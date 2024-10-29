@@ -32,7 +32,7 @@ import { Configuration }                                     from '../configurat
 })
 export class LoginCheckService {
 
-    protected basePath = 'http://localhost:8000/api';
+    protected basePath = 'http://localhost:8000';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
     public encoder: HttpParameterCodec;
@@ -99,10 +99,10 @@ export class LoginCheckService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public loginCheckPost(loginCheckPostRequest: LoginCheckPostRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<LoginCheckPost200Response>;
-    public loginCheckPost(loginCheckPostRequest: LoginCheckPostRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<LoginCheckPost200Response>>;
-    public loginCheckPost(loginCheckPostRequest: LoginCheckPostRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<LoginCheckPost200Response>>;
-    public loginCheckPost(loginCheckPostRequest: LoginCheckPostRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public loginCheckPost(loginCheckPostRequest: LoginCheckPostRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<LoginCheckPost200Response>;
+    public loginCheckPost(loginCheckPostRequest: LoginCheckPostRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<LoginCheckPost200Response>>;
+    public loginCheckPost(loginCheckPostRequest: LoginCheckPostRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<LoginCheckPost200Response>>;
+    public loginCheckPost(loginCheckPostRequest: LoginCheckPostRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (loginCheckPostRequest === null || loginCheckPostRequest === undefined) {
             throw new Error('Required parameter loginCheckPostRequest was null or undefined when calling loginCheckPost.');
         }
@@ -131,11 +131,6 @@ export class LoginCheckService {
         let localVarHttpContext: HttpContext | undefined = options && options.context;
         if (localVarHttpContext === undefined) {
             localVarHttpContext = new HttpContext();
-        }
-
-        let localVarTransferCache: boolean | undefined = options && options.transferCache;
-        if (localVarTransferCache === undefined) {
-            localVarTransferCache = true;
         }
 
 
@@ -168,7 +163,6 @@ export class LoginCheckService {
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
                 reportProgress: reportProgress
             }
         );

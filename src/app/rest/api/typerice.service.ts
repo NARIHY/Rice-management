@@ -38,7 +38,7 @@ import { Configuration }                                     from '../configurat
 })
 export class TypericeService {
 
-    protected basePath = 'http://localhost:8000/api';
+    protected basePath = 'http://localhost:8000';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
     public encoder: HttpParameterCodec;
@@ -105,10 +105,10 @@ export class TypericeService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiTypericesGetCollection(page?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<ApiTypericesGetCollection200Response>;
-    public apiTypericesGetCollection(page?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ApiTypericesGetCollection200Response>>;
-    public apiTypericesGetCollection(page?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<ApiTypericesGetCollection200Response>>;
-    public apiTypericesGetCollection(page?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public apiTypericesGetCollection(page?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<ApiTypericesGetCollection200Response>;
+    public apiTypericesGetCollection(page?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpResponse<ApiTypericesGetCollection200Response>>;
+    public apiTypericesGetCollection(page?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpEvent<ApiTypericesGetCollection200Response>>;
+    public apiTypericesGetCollection(page?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<any> {
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         if (page !== undefined && page !== null) {
@@ -144,11 +144,6 @@ export class TypericeService {
             localVarHttpContext = new HttpContext();
         }
 
-        let localVarTransferCache: boolean | undefined = options && options.transferCache;
-        if (localVarTransferCache === undefined) {
-            localVarTransferCache = true;
-        }
-
 
         let responseType_: 'text' | 'json' | 'blob' = 'json';
         if (localVarHttpHeaderAcceptSelected) {
@@ -170,7 +165,6 @@ export class TypericeService {
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
                 reportProgress: reportProgress
             }
         );
@@ -183,10 +177,10 @@ export class TypericeService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiTypericesIdDelete(id: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<any>;
-    public apiTypericesIdDelete(id: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<any>>;
-    public apiTypericesIdDelete(id: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<any>>;
-    public apiTypericesIdDelete(id: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public apiTypericesIdDelete(id: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
+    public apiTypericesIdDelete(id: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
+    public apiTypericesIdDelete(id: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
+    public apiTypericesIdDelete(id: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling apiTypericesIdDelete.');
         }
@@ -216,11 +210,6 @@ export class TypericeService {
             localVarHttpContext = new HttpContext();
         }
 
-        let localVarTransferCache: boolean | undefined = options && options.transferCache;
-        if (localVarTransferCache === undefined) {
-            localVarTransferCache = true;
-        }
-
 
         let responseType_: 'text' | 'json' | 'blob' = 'json';
         if (localVarHttpHeaderAcceptSelected) {
@@ -241,7 +230,6 @@ export class TypericeService {
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
                 reportProgress: reportProgress
             }
         );
@@ -254,10 +242,10 @@ export class TypericeService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiTypericesIdGet(id: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<TypericeJsonldTypericeCollectionGetTypericeCollectionPost>;
-    public apiTypericesIdGet(id: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<TypericeJsonldTypericeCollectionGetTypericeCollectionPost>>;
-    public apiTypericesIdGet(id: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<TypericeJsonldTypericeCollectionGetTypericeCollectionPost>>;
-    public apiTypericesIdGet(id: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public apiTypericesIdGet(id: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<TypericeJsonldTypericeCollectionGetTypericeCollectionPost>;
+    public apiTypericesIdGet(id: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpResponse<TypericeJsonldTypericeCollectionGetTypericeCollectionPost>>;
+    public apiTypericesIdGet(id: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpEvent<TypericeJsonldTypericeCollectionGetTypericeCollectionPost>>;
+    public apiTypericesIdGet(id: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling apiTypericesIdGet.');
         }
@@ -290,11 +278,6 @@ export class TypericeService {
             localVarHttpContext = new HttpContext();
         }
 
-        let localVarTransferCache: boolean | undefined = options && options.transferCache;
-        if (localVarTransferCache === undefined) {
-            localVarTransferCache = true;
-        }
-
 
         let responseType_: 'text' | 'json' | 'blob' = 'json';
         if (localVarHttpHeaderAcceptSelected) {
@@ -315,7 +298,6 @@ export class TypericeService {
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
                 reportProgress: reportProgress
             }
         );
@@ -329,10 +311,10 @@ export class TypericeService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiTypericesIdPut(id: string, typericeJsonldTypericeCollectionPost: TypericeJsonldTypericeCollectionPost, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<TypericeJsonldTypericeCollectionGetTypericeCollectionPost>;
-    public apiTypericesIdPut(id: string, typericeJsonldTypericeCollectionPost: TypericeJsonldTypericeCollectionPost, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<TypericeJsonldTypericeCollectionGetTypericeCollectionPost>>;
-    public apiTypericesIdPut(id: string, typericeJsonldTypericeCollectionPost: TypericeJsonldTypericeCollectionPost, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<TypericeJsonldTypericeCollectionGetTypericeCollectionPost>>;
-    public apiTypericesIdPut(id: string, typericeJsonldTypericeCollectionPost: TypericeJsonldTypericeCollectionPost, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public apiTypericesIdPut(id: string, typericeJsonldTypericeCollectionPost: TypericeJsonldTypericeCollectionPost, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<TypericeJsonldTypericeCollectionGetTypericeCollectionPost>;
+    public apiTypericesIdPut(id: string, typericeJsonldTypericeCollectionPost: TypericeJsonldTypericeCollectionPost, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpResponse<TypericeJsonldTypericeCollectionGetTypericeCollectionPost>>;
+    public apiTypericesIdPut(id: string, typericeJsonldTypericeCollectionPost: TypericeJsonldTypericeCollectionPost, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpEvent<TypericeJsonldTypericeCollectionGetTypericeCollectionPost>>;
+    public apiTypericesIdPut(id: string, typericeJsonldTypericeCollectionPost: TypericeJsonldTypericeCollectionPost, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling apiTypericesIdPut.');
         }
@@ -368,11 +350,6 @@ export class TypericeService {
             localVarHttpContext = new HttpContext();
         }
 
-        let localVarTransferCache: boolean | undefined = options && options.transferCache;
-        if (localVarTransferCache === undefined) {
-            localVarTransferCache = true;
-        }
-
 
         // to determine the Content-Type header
         const consumes: string[] = [
@@ -405,7 +382,6 @@ export class TypericeService {
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
                 reportProgress: reportProgress
             }
         );
@@ -418,10 +394,10 @@ export class TypericeService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiTypericesPost(typericeJsonldTypericeCollectionPost: TypericeJsonldTypericeCollectionPost, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<TypericeJsonldTypericeCollectionGetTypericeCollectionPost>;
-    public apiTypericesPost(typericeJsonldTypericeCollectionPost: TypericeJsonldTypericeCollectionPost, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<TypericeJsonldTypericeCollectionGetTypericeCollectionPost>>;
-    public apiTypericesPost(typericeJsonldTypericeCollectionPost: TypericeJsonldTypericeCollectionPost, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<TypericeJsonldTypericeCollectionGetTypericeCollectionPost>>;
-    public apiTypericesPost(typericeJsonldTypericeCollectionPost: TypericeJsonldTypericeCollectionPost, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public apiTypericesPost(typericeJsonldTypericeCollectionPost: TypericeJsonldTypericeCollectionPost, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<TypericeJsonldTypericeCollectionGetTypericeCollectionPost>;
+    public apiTypericesPost(typericeJsonldTypericeCollectionPost: TypericeJsonldTypericeCollectionPost, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpResponse<TypericeJsonldTypericeCollectionGetTypericeCollectionPost>>;
+    public apiTypericesPost(typericeJsonldTypericeCollectionPost: TypericeJsonldTypericeCollectionPost, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpEvent<TypericeJsonldTypericeCollectionGetTypericeCollectionPost>>;
+    public apiTypericesPost(typericeJsonldTypericeCollectionPost: TypericeJsonldTypericeCollectionPost, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<any> {
         if (typericeJsonldTypericeCollectionPost === null || typericeJsonldTypericeCollectionPost === undefined) {
             throw new Error('Required parameter typericeJsonldTypericeCollectionPost was null or undefined when calling apiTypericesPost.');
         }
@@ -452,11 +428,6 @@ export class TypericeService {
         let localVarHttpContext: HttpContext | undefined = options && options.context;
         if (localVarHttpContext === undefined) {
             localVarHttpContext = new HttpContext();
-        }
-
-        let localVarTransferCache: boolean | undefined = options && options.transferCache;
-        if (localVarTransferCache === undefined) {
-            localVarTransferCache = true;
         }
 
 
@@ -491,7 +462,6 @@ export class TypericeService {
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
                 reportProgress: reportProgress
             }
         );

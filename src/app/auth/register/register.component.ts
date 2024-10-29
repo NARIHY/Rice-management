@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/AuthService.service';
 
 @Component({
   selector: 'app-register',
@@ -8,57 +9,49 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-
-
   isLoading: boolean = false;
   registerForm: FormGroup;
-  flashMessage : any = "";
-  user: [] = [];
-   // Propriétés pour le modal
-   showModal: boolean = false;
-   modalTitle: string = '';
-   modalMessage: string = '';
+  showModal: boolean = false;
+  modalTitle: string = '';
+  modalMessage: string = '';
 
-
-  constructor(private fb: FormBuilder, private router: Router) {
-    this.loader();
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) {
     this.registerForm = this.fb.group({
-      name: ['',  Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8),this.passwordValidator]],
+      password: ['', [Validators.required, Validators.minLength(8), this.passwordValidator]],
       password_confirmation: ['', Validators.required]
-    });
+    }, { validators: this.passwordsMatch }); // Set the validator for the FormGroup
   }
 
-  ngOnInit(): void {
-
-  }
-
-  loader()
-  {
-    if(this.isLoading === false) {
-      this.isLoading = true;
-      setTimeout(() => {
-        this.isLoading = false;
-      }, 2000);
-    }
-  }
+  ngOnInit(): void {}
 
   onSubmit() {
     if (this.registerForm.valid) {
       this.isLoading = true;
-      this.loader();
 
-      const name = this.registerForm.get('name')?.value;
       const email = this.registerForm.get('email')?.value;
       const password = this.registerForm.get('password')?.value;
-      const password_confirmation = this.registerForm.get('password_confirmation')?.value;
-      const gender = this.registerForm.get('gender')?.value;
 
-
+      this.authService.register(email, password).subscribe(
+        (response) => {
+          console.log('Registration successful', response);
+          this.showModal = true;
+          this.modalTitle = 'Success';
+          this.modalMessage = 'Registration successful! You can now log in.';
+          this.resetForm();
+        },
+        (error) => {
+          console.error('Registration failed', error);
+          this.showModal = true;
+          this.modalTitle = 'Error';
+          this.modalMessage = error.error?.error || 'Registration failed. Please try again.';
+        },
+        () => {
+          this.isLoading = false; // Stop loading on completion
+        }
+      );
     }
   }
-
 
   passwordValidator(control: AbstractControl): { [key: string]: boolean } | null {
     const password = control.value;
@@ -66,14 +59,15 @@ export class RegisterComponent implements OnInit {
     return regex.test(password) ? null : { complexity: true };
   }
 
-  passwordsMatch(formGroup: FormGroup): { [key: string]: boolean } | null {
+  passwordsMatch(formGroup: AbstractControl): { [key: string]: boolean } | null {
     return formGroup.get('password')?.value === formGroup.get('password_confirmation')?.value
       ? null : { mismatch: true };
   }
 
-
   private resetForm() {
-    this.registerForm.reset(); // Réinitialiser le formulaire
+    this.registerForm.reset();
+    this.registerForm.clearValidators(); // Clear validators on reset
+    this.registerForm.setValidators(this.passwordsMatch); // Reapply group validators
+    this.registerForm.updateValueAndValidity(); // Update the form validity
   }
-
 }

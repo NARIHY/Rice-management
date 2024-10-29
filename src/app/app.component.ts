@@ -10,20 +10,6 @@ export class AppComponent {
   title = 'Rice-management';
 
 
-  //example of using loader
-  isLoading: boolean = false;
-  constructor(private router: Router) {
-    this.loader();
-  }
 
-  loader()
-  {
-    if(this.isLoading === false) {
-      this.isLoading = true;
-      setTimeout(() => {
-        this.isLoading = false;
-      }, 2000);
-    }
-  }
 
 }

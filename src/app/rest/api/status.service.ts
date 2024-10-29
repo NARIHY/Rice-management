@@ -38,7 +38,7 @@ import { Configuration }                                     from '../configurat
 })
 export class StatusService {
 
-    protected basePath = 'http://localhost:8000/api';
+    protected basePath = 'http://localhost:8000';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
     public encoder: HttpParameterCodec;
@@ -105,10 +105,10 @@ export class StatusService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiStatusesGetCollection(page?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<ApiStatusesGetCollection200Response>;
-    public apiStatusesGetCollection(page?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ApiStatusesGetCollection200Response>>;
-    public apiStatusesGetCollection(page?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<ApiStatusesGetCollection200Response>>;
-    public apiStatusesGetCollection(page?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public apiStatusesGetCollection(page?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<ApiStatusesGetCollection200Response>;
+    public apiStatusesGetCollection(page?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpResponse<ApiStatusesGetCollection200Response>>;
+    public apiStatusesGetCollection(page?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpEvent<ApiStatusesGetCollection200Response>>;
+    public apiStatusesGetCollection(page?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<any> {
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         if (page !== undefined && page !== null) {
@@ -144,11 +144,6 @@ export class StatusService {
             localVarHttpContext = new HttpContext();
         }
 
-        let localVarTransferCache: boolean | undefined = options && options.transferCache;
-        if (localVarTransferCache === undefined) {
-            localVarTransferCache = true;
-        }
-
 
         let responseType_: 'text' | 'json' | 'blob' = 'json';
         if (localVarHttpHeaderAcceptSelected) {
@@ -170,7 +165,6 @@ export class StatusService {
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
                 reportProgress: reportProgress
             }
         );
@@ -183,10 +177,10 @@ export class StatusService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiStatusesIdGet(id: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<StatusJsonldStatusesCollectionGetStatusesCollectionPost>;
-    public apiStatusesIdGet(id: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<StatusJsonldStatusesCollectionGetStatusesCollectionPost>>;
-    public apiStatusesIdGet(id: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<StatusJsonldStatusesCollectionGetStatusesCollectionPost>>;
-    public apiStatusesIdGet(id: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public apiStatusesIdGet(id: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<StatusJsonldStatusesCollectionGetStatusesCollectionPost>;
+    public apiStatusesIdGet(id: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpResponse<StatusJsonldStatusesCollectionGetStatusesCollectionPost>>;
+    public apiStatusesIdGet(id: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpEvent<StatusJsonldStatusesCollectionGetStatusesCollectionPost>>;
+    public apiStatusesIdGet(id: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling apiStatusesIdGet.');
         }
@@ -219,11 +213,6 @@ export class StatusService {
             localVarHttpContext = new HttpContext();
         }
 
-        let localVarTransferCache: boolean | undefined = options && options.transferCache;
-        if (localVarTransferCache === undefined) {
-            localVarTransferCache = true;
-        }
-
 
         let responseType_: 'text' | 'json' | 'blob' = 'json';
         if (localVarHttpHeaderAcceptSelected) {
@@ -244,7 +233,6 @@ export class StatusService {
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
                 reportProgress: reportProgress
             }
         );
@@ -258,10 +246,10 @@ export class StatusService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiStatusesIdPatch(id: string, statusStatusesCollectionPost: StatusStatusesCollectionPost, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<StatusJsonldStatusesCollectionGetStatusesCollectionPost>;
-    public apiStatusesIdPatch(id: string, statusStatusesCollectionPost: StatusStatusesCollectionPost, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<StatusJsonldStatusesCollectionGetStatusesCollectionPost>>;
-    public apiStatusesIdPatch(id: string, statusStatusesCollectionPost: StatusStatusesCollectionPost, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<StatusJsonldStatusesCollectionGetStatusesCollectionPost>>;
-    public apiStatusesIdPatch(id: string, statusStatusesCollectionPost: StatusStatusesCollectionPost, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public apiStatusesIdPatch(id: string, statusStatusesCollectionPost: StatusStatusesCollectionPost, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<StatusJsonldStatusesCollectionGetStatusesCollectionPost>;
+    public apiStatusesIdPatch(id: string, statusStatusesCollectionPost: StatusStatusesCollectionPost, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpResponse<StatusJsonldStatusesCollectionGetStatusesCollectionPost>>;
+    public apiStatusesIdPatch(id: string, statusStatusesCollectionPost: StatusStatusesCollectionPost, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpEvent<StatusJsonldStatusesCollectionGetStatusesCollectionPost>>;
+    public apiStatusesIdPatch(id: string, statusStatusesCollectionPost: StatusStatusesCollectionPost, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling apiStatusesIdPatch.');
         }
@@ -297,11 +285,6 @@ export class StatusService {
             localVarHttpContext = new HttpContext();
         }
 
-        let localVarTransferCache: boolean | undefined = options && options.transferCache;
-        if (localVarTransferCache === undefined) {
-            localVarTransferCache = true;
-        }
-
 
         // to determine the Content-Type header
         const consumes: string[] = [
@@ -332,7 +315,6 @@ export class StatusService {
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
                 reportProgress: reportProgress
             }
         );
@@ -345,10 +327,10 @@ export class StatusService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiStatusesPost(statusJsonldStatusesCollectionPost: StatusJsonldStatusesCollectionPost, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<StatusJsonldStatusesCollectionGetStatusesCollectionPost>;
-    public apiStatusesPost(statusJsonldStatusesCollectionPost: StatusJsonldStatusesCollectionPost, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<StatusJsonldStatusesCollectionGetStatusesCollectionPost>>;
-    public apiStatusesPost(statusJsonldStatusesCollectionPost: StatusJsonldStatusesCollectionPost, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<StatusJsonldStatusesCollectionGetStatusesCollectionPost>>;
-    public apiStatusesPost(statusJsonldStatusesCollectionPost: StatusJsonldStatusesCollectionPost, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public apiStatusesPost(statusJsonldStatusesCollectionPost: StatusJsonldStatusesCollectionPost, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<StatusJsonldStatusesCollectionGetStatusesCollectionPost>;
+    public apiStatusesPost(statusJsonldStatusesCollectionPost: StatusJsonldStatusesCollectionPost, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpResponse<StatusJsonldStatusesCollectionGetStatusesCollectionPost>>;
+    public apiStatusesPost(statusJsonldStatusesCollectionPost: StatusJsonldStatusesCollectionPost, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpEvent<StatusJsonldStatusesCollectionGetStatusesCollectionPost>>;
+    public apiStatusesPost(statusJsonldStatusesCollectionPost: StatusJsonldStatusesCollectionPost, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<any> {
         if (statusJsonldStatusesCollectionPost === null || statusJsonldStatusesCollectionPost === undefined) {
             throw new Error('Required parameter statusJsonldStatusesCollectionPost was null or undefined when calling apiStatusesPost.');
         }
@@ -379,11 +361,6 @@ export class StatusService {
         let localVarHttpContext: HttpContext | undefined = options && options.context;
         if (localVarHttpContext === undefined) {
             localVarHttpContext = new HttpContext();
-        }
-
-        let localVarTransferCache: boolean | undefined = options && options.transferCache;
-        if (localVarTransferCache === undefined) {
-            localVarTransferCache = true;
         }
 
 
@@ -418,7 +395,6 @@ export class StatusService {
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
                 reportProgress: reportProgress
             }
         );

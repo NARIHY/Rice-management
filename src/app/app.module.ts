@@ -16,6 +16,10 @@ import { RegisterComponent } from './auth/register/register.component';
 import { HomeComponent } from './public/home/home.component';
 import { InformationComponent } from './public/information/information.component';
 import { ImageCarrousselComponent } from './commons/image-carroussel/image-carroussel.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MenuClientComponent } from './commons/menu-client/menu-client.component';
+import { NgbAccordionModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -38,9 +42,16 @@ import { ImageCarrousselComponent } from './commons/image-carroussel/image-carro
     RouterLink,
     RouterLinkActive,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgbModule,
+    NgbAccordionModule,
+    SharedModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [
+
+  ]
 })
 export class AppModule { }

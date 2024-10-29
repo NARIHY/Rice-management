@@ -1,25 +1,37 @@
 <app-header ></app-header>
+
+
 <div class="centre">
   <div class="form-container">
     <h2 class="text-center">Connexion</h2>
-    <form>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="form-field">
-        <input type="email" id="email" required placeholder="">
+        <input type="email" id="email" formControlName="username" required placeholder="">
         <label for="email">Email</label>
+        <div *ngIf="loginForm.get('username')?.invalid && (loginForm.get('username')?.touched || loginForm.get('username')?.dirty)">
+          <small *ngIf="loginForm.get('username')?.errors?.['required']">Email requis.</small>
+          <small *ngIf="loginForm.get('username')?.errors?.['email']">Email invalide.</small>
+        </div>
       </div>
-      <div class="form-field">
-        <input type="password" id="password" required placeholder="">
-        <label for="password">Mot de passe</label>
-      </div>
-      <button type="submit">Se connecter</button>
 
-      <!-- Lien pour réinitialiser le mot de passe -->
+      <div class="form-field">
+        <input type="password" id="password" formControlName="password" required placeholder="">
+        <label for="password">Mot de passe</label>
+        <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)">
+          <small *ngIf="loginForm.get('password')?.errors?.['required']">Mot de passe requis.</small>
+          <small *ngIf="loginForm.get('password')?.errors?.['minlength']">Le mot de passe doit avoir au moins 6 caractères.</small>
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid">Se connecter</button>
+
       <div class="reset-password">
         <a href="#" class="reset-password-link">Mot de passe oublié ?</a>
       </div>
     </form>
   </div>
 </div>
+
 
 <app-loader *ngIf="isLoading" ></app-loader>
 <app-footer ></app-footer>
