@@ -1,0 +1,31 @@
+<app-header></app-header>
+<div class="form-wrapper">
+  <div class="form-container">
+    <h2 class="form-title">Contactez-nous</h2>
+    <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+      <div class="form-field">
+        <input type="text" id="name" name="name" required ngModel placeholder="">
+        <label for="name">Nom :</label>
+      </div>
+
+      <div class="form-field">
+        <input type="email" id="email" name="email" required ngModel placeholder="">
+        <label for="email">Email :</label>
+      </div>
+
+      <div class="form-field">
+        <input type="text" id="subject" name="subject" required ngModel placeholder="">
+        <label for="subject">Sujet de conversation :</label>
+      </div>
+
+      <div class="form-field">
+        <textarea id="message" name="message" rows="4" required ngModel placeholder=""></textarea>
+        <label for="message">Message :</label>
+      </div>
+
+      <button type="submit" class="submit-button">Envoyer</button>
+    </form>
+  </div>
+</div>
+<app-loader *ngIf="isLoading"></app-loader>
+<app-footer></app-footer>

@@ -1,0 +1,69 @@
+<app-header></app-header>
+
+<div class="form-wrapper">
+  <div class="form-container">
+    <h2 class="form-title">Inscription</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+      <!-- Champ Nom -->
+      <div class="form-field">
+        <input type="text" id="name" formControlName="name" required placeholder=" ">
+        <label for="name">Nom</label>
+        <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched" class="error-message">
+          Le nom est requis.
+        </div>
+      </div>
+
+      <!-- Champ Email -->
+      <div class="form-field">
+        <input type="email" id="email" formControlName="email" required placeholder=" ">
+        <label for="email">Email</label>
+        <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="error-message">
+          Un email valide est requis.
+        </div>
+      </div>
+
+      <!-- Champ Mot de passe -->
+      <div class="form-field">
+        <input type="password" id="password" formControlName="password" required placeholder=" ">
+        <label for="password">Mot de passe</label>
+        <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="error-message">
+          Le mot de passe est requis (minimum 8 caractères) et doît correspondre à la mots de passe de confirmation.
+        </div>
+      </div>
+
+      <!-- Champ Confirmation du mot de passe -->
+      <div class="form-field">
+        <input type="password" id="password_confirmation" formControlName="password_confirmation" required placeholder=" ">
+        <label for="password_confirmation">Confirmer le mot de passe</label>
+        <div *ngIf="registerForm.get('password_confirmation')?.invalid && registerForm.get('password_confirmation')?.touched" class="error-message">
+          La confirmation du mot de passe est requise et doît être pareil que celle du mots de passe entrer en haut.
+        </div>
+      </div>
+
+      <!-- Sélecteur de genre -->
+
+
+
+      <!-- Bouton d'inscription -->
+      <button type="submit" class="submit-button" [disabled]="registerForm.invalid">S'inscrire</button>
+    </form>
+
+    <!-- Modals -->
+    <div *ngIf="showModal" class="fixed inset-0 z-50 flex items-center justify-center">
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <h2 class="text-xl font-bold">{{ modalTitle }}</h2>
+        <p>{{ modalMessage }}</p>
+        <button (click)="showModal = false" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
+          Fermer
+        </button>
+      </div>
+    </div>
+
+    <!-- end modals -->
+  </div>
+</div>
+
+
+<app-loader *ngIf="isLoading" ></app-loader>
+<app-footer ></app-footer>

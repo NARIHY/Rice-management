@@ -1,0 +1,85 @@
+body {
+  background-color: #d9f7d9; /* Couleur de fond */
+  font-family: Arial, sans-serif; /* Police de caractère */
+}
+
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Prend toute la hauteur de la fenêtre */
+}
+
+.form-container {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+}
+
+.form-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.form-field {
+  position: relative; /* Nécessaire pour le positionnement du label */
+  margin-bottom: 1.5rem; /* Espace entre les champs */
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%; /* Prend toute la largeur */
+  padding: 12px; /* Espacement intérieur */
+  border: 1px solid #ccc; /* Bordure */
+  border-radius: 4px; /* Coins arrondis */
+  font-size: 16px; /* Taille de la police */
+  transition: border-color 0.2s; /* Transition pour la bordure */
+  outline: none;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #007bff; /* Bordure au focus */
+}
+
+label {
+  position: absolute; /* Positionnement absolu pour le label */
+  left: 12px; /* Décalage gauche */
+  top: 14px; /* Décalage haut */
+  font-size: 16px; /* Taille de la police */
+  color: #999; /* Couleur du label */
+  pointer-events: none; /* Ignorer les événements de souris */
+  transition: 0.2s ease all; /* Animation de transition */
+  font-weight: normal; /* Poids normal par défaut */
+}
+
+/* Effet de floating */
+input:focus + label,
+textarea:focus + label,
+input:not(:placeholder-shown) + label {
+  top: -10px; /* Déplacement vers le haut */
+  left: 10px; /* Décalage vers la gauche */
+  font-size: 12px; /* Réduction de la taille de la police */
+  color: #007bff; /* Changement de couleur */
+  font-weight: bold; /* Rendre le label en gras */
+  background-color: white; /* Fond blanc */
+}
+
+.submit-button {
+  width: 100%; /* Prend toute la largeur */
+  padding: 10px; /* Espacement intérieur */
+  background-color: #007bff; /* Couleur de fond du bouton */
+  color: white; /* Couleur du texte */
+  border: none; /* Pas de bordure */
+  border-radius: 4px; /* Coins arrondis */
+  cursor: pointer; /* Curseur en forme de main */
+  font-size: 16px; /* Taille de la police */
+  transition: background-color 0.3s; /* Transition pour le fond */
+}
+
+.submit-button:hover {
+  background-color: #0056b3; /* Couleur de fond au survol */
+}

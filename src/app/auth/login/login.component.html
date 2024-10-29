@@ -1,0 +1,25 @@
+<app-header ></app-header>
+<div class="centre">
+  <div class="form-container">
+    <h2 class="text-center">Connexion</h2>
+    <form>
+      <div class="form-field">
+        <input type="email" id="email" required placeholder="">
+        <label for="email">Email</label>
+      </div>
+      <div class="form-field">
+        <input type="password" id="password" required placeholder="">
+        <label for="password">Mot de passe</label>
+      </div>
+      <button type="submit">Se connecter</button>
+
+      <!-- Lien pour réinitialiser le mot de passe -->
+      <div class="reset-password">
+        <a href="#" class="reset-password-link">Mot de passe oublié ?</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<app-loader *ngIf="isLoading" ></app-loader>
+<app-footer ></app-footer>
