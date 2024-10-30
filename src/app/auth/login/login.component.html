@@ -1,6 +1,3 @@
-<app-header ></app-header>
-
-
 <div class="centre">
   <div class="form-container">
     <h2 class="text-center">Connexion</h2>
@@ -27,6 +24,8 @@
 
       <div class="reset-password">
         <a href="#" class="reset-password-link">Mot de passe oublié ?</a>
+        <a routerLink="/register" class="reset-password-link">S'incrire</a>
+        <a routerLink="/" class="reset-password-link">Retour à l'acceuil</a>
       </div>
     </form>
   </div>
@@ -34,4 +33,3 @@
 
 
 <app-loader *ngIf="isLoading" ></app-loader>
-<app-footer ></app-footer>

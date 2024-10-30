@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, AfterViewInit } from '@angular/core';
 import { NgbAccordionDirective } from '@ng-bootstrap/ng-bootstrap';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -6,16 +6,18 @@ import { filter } from 'rxjs/operators';
 
 export interface GroupMenu {
   name: string;
-  icon?: string; // This will be the Bootstrap icon class
+  icon?: string; // Classe d'icône Bootstrap
   menus: Menu[];
 }
-
+/**
+ * The name of the menu should be the same of the name of the url
+ */
 export interface Menu {
   name: string;
   displayName: string;
-  icon: string; // This will also be a Bootstrap icon class
+  icon: string; // Classe d'icône Bootstrap
   isSelected: boolean;
-  link: any[];
+  link: any[]; // Lien de navigation
 }
 
 @Component({
@@ -24,10 +26,62 @@ export interface Menu {
   styleUrls: ['./menu-client.component.css']
 })
 export class MenuClientComponent implements OnInit, AfterViewInit, OnDestroy {
-  @Input() menus!: GroupMenu[];
-  @ViewChild('acc') accordion!: NgbAccordionDirective;
+  @ViewChild('acc') accordion!: NgbAccordionDirective; // Référence à l'accordéon
 
-  subscription!: Subscription;
+  private subscription!: Subscription; // Subscription pour les événements de navigation
+
+  // Initialisation des menus
+  menus: GroupMenu[] = [
+    {
+      name: 'Dashboard',
+      icon: 'bi bi-house',
+      menus: [
+        {
+          name: 'dashboard',
+          icon: 'bi bi-house',
+          displayName: 'Dashboard',
+          isSelected: false,
+          link: ['', { outlets: { primary: 'client/dashboard' } }]
+        },
+        {
+          name: 'overview',
+          displayName: 'Overview',
+          icon: 'bi bi-info-circle',
+          isSelected: false,
+          link: ['', { outlets: { primary: 'client/Overview' } }]
+        },
+        {
+          name: 'statistics',
+          displayName: 'Statistics',
+          icon: 'bi bi-bar-chart',
+          isSelected: false,
+          link: ['', { outlets: { primary: 'client/Statistics' } }]
+        }
+      ]
+    },
+    {
+      name: 'settings',
+      icon: 'bi bi-gear',
+      menus: [
+        {
+          name: 'profile',
+          displayName: 'Profile',
+          icon: 'bi bi-person',
+          isSelected: false,
+          link: ['', { outlets: { primary: 'client/Profile' } }]
+        },
+        {
+          name: 'security',
+          displayName: 'Security',
+          icon: 'bi bi-shield-lock',
+          isSelected: false,
+          link: ['', { outlets: { primary: 'client/Security' } }]
+        }
+      ]
+    }
+  ];
+
+  activeGroup: string | null = null; // Pour gérer le groupe actif
 
   constructor(private router: Router) {}
 
@@ -40,7 +94,9 @@ export class MenuClientComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    this.checkSelected(this.router.url);
+    setTimeout(() => {
+      this.checkSelected(this.router.url);
+    });
   }
 
   ngOnDestroy(): void {
@@ -48,17 +104,29 @@ export class MenuClientComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private checkSelected(url: string) {
+    let found = false;
+
     for (const g of this.menus) {
       for (const m of g.menus) {
-        m.isSelected = url.includes(m.name);
-        if (m.isSelected) {
+        if (url.includes(m.name)) {
+          m.isSelected = true;
           this.accordion.expand(g.name);
+        } else {
+          m.isSelected = false;
         }
       }
     }
+
+    if (!found) {
+      this.activeGroup = null;
+    }
   }
 
-  trackByFn(index: number, item: Menu): string {
-    return item.name; // Return a unique identifier for the item
+  toggleGroup(groupName: string) {
+    if (this.activeGroup === groupName) {
+      this.activeGroup = null;
+    } else {
+      this.activeGroup = groupName;
+    }
   }
 }

@@ -12,7 +12,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     RouterLink,
     RouterLinkActive,
     NgbModule,
-    RouterModule
+    RouterModule,
+    NgbModule
   ],
   exports: [
     MenuClientComponent // Export the component so it can be used in other modules

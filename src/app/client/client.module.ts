@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ClientRoutingModule } from './client-routing.module';
 import { DashboardClientComponent } from './dashboard-client/dashboard-client.component';
 import { SharedModule } from '../shared/shared.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     ClientRoutingModule,
-    SharedModule
+    SharedModule,
+    NgbModule
   ]
 })
 export class ClientModule { }

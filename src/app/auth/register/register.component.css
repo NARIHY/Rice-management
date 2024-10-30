@@ -89,3 +89,15 @@ select:focus + label {
 .error-message {
   color: red;
 }
+
+.reset-password {
+  margin-top: 10px; /* Marge au-dessus du lien */
+  text-align: center; /* Centre le texte */
+}
+
+.reset-password-link {
+  color: #007bff; /* Couleur du lien */
+  text-decoration: none; /* Supprime le soulignement */
+  font-size: 14px; /* Taille de la police */
+  padding: 4px;
+}

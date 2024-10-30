@@ -34,7 +34,6 @@ export class RegisterComponent implements OnInit {
 
       this.authService.register(email, password).subscribe(
         (response) => {
-          console.log('Registration successful', response);
           this.showModal = true;
           this.modalTitle = 'Success';
           this.modalMessage = 'Registration successful! You can now log in.';
@@ -70,4 +69,5 @@ export class RegisterComponent implements OnInit {
     this.registerForm.setValidators(this.passwordsMatch); // Reapply group validators
     this.registerForm.updateValueAndValidity(); // Update the form validity
   }
+
 }

@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.isLoading = true;
     if (!this.loginForm.valid) {
       console.log('Form not valid');
       return;
@@ -59,6 +60,9 @@ export class LoginComponent implements OnInit {
       },
       (error) => {
         console.error('Login failed', error);
+      },
+      () => {
+        this.isLoading = false;
       }
     );
   }

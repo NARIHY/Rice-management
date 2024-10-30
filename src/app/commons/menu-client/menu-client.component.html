@@ -1,25 +1,33 @@
-<div id="sidebar" class="d-none d-lg-block sticky">
-  <div id="sidebar-nav" class="list-group">
-    <div ngbAccordion #acc="ngbAccordion">
-      <div ngbAccordionItem *ngFor="let g of menus" [id]="g.name">
-        <div ngbAccordionHeader>
-          <button ngbAccordionButton>
-            <i [class]="g.icon" class="me-2"></i>
-            <p class="my-3 ms-2">{{ g.name }}</p>
-          </button>
-        </div>
-        <div ngbAccordionCollapse>
-          <div ngbAccordionBody>
-            <div class="list-group" *ngFor="let m of g.menus; trackBy: trackByFn">
-              <a [routerLink]="m.link" class="btn text-decoration-none text-start"
-                 [ngClass]="m.isSelected ? 'btn-primary' : 'btn-link'">
-                <i [class]="m.icon" class="me-2"></i>
-                <span>{{ m.displayName }}</span>
-              </a>
+
+  <!-- Sidebar -->
+  <div id="sidebar" class="d-none d-lg-block sticky">
+    <div id="sidebar-nav" class="list-group">
+      <div ngbAccordion #acc="ngbAccordion">
+        <div *ngIf="menus && menus.length > 0; else noMenus">
+          <div ngbAccordionItem *ngFor="let g of menus" [id]="g.name">
+            <div ngbAccordionHeader>
+              <button ngbAccordionButton (click)="toggleGroup(g.name)" class="d-flex align-items-center">
+                <i [class]="g.icon" class="me-2"></i>
+                <span class="my-3">{{ g.name }}</span>
+              </button>
+            </div>
+            <div ngbAccordionCollapse [ngClass]="{'show': activeGroup === g.name}">
+              <div ngbAccordionBody>
+                <div class="list-group">
+                  <a *ngFor="let m of g.menus" [routerLink]="m.link" class="btn text-decoration-none text-start"
+                  [ngClass]="m.isSelected ? 'btn-primary' : 'btn-link'">
+                    <i [class]="m.icon" class="me-2"></i>
+                    <span>{{ m.displayName }}</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        <ng-template #noMenus>
+          <div class="text-center">Aucun menu disponible</div>
+        </ng-template>
       </div>
     </div>
   </div>
-</div>
+

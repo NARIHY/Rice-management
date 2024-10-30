@@ -92,8 +92,7 @@ button:hover {
   color: #007bff; /* Couleur du lien */
   text-decoration: none; /* Supprime le soulignement */
   font-size: 14px; /* Taille de la police */
+  padding: 4px;
 }
 
-.reset-password-link:hover {
-  text-decoration: underline; /* Soulignement au survol */
-}
+
