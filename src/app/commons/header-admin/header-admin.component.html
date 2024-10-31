@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-dark-200">
+  <div class="container-fluid">
+    <a routerLink="/" class="navbar-brand d-flex align-items-center">
+      <img src="/assets/img/marioRice.png" width="40px" alt="Logo" />
+      <span class="navbar-text fs-2 fw-semibold">{{ dashboardTitle }}</span>
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="toggleMenu()"
+      aria-controls="navbarNav"
+      aria-expanded="isMenuOpen"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" [ngClass]="{'show': isMenuOpen}" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown" (click)="toggleDropdown()">
+          <a class="nav-link dropdown-toggle"  id="userDropdown" role="button" aria-expanded="isDropdownOpen">
+            {{ extractUsername() }} <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" [ngClass]="{'show': isDropdownOpen}">
+            <li class="dropdown-item">
+              <strong>{{ user?.userIdentifier }}</strong><br>
+              <small>Client</small>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li class="dropdown-item"  routerLink="/logout" style="cursor: pointer;">
+              <i class="bi bi-box-arrow-right"></i> {{staticTextFR.logout}}
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item" *ngFor="let item of menuItems">
+          <a [routerLink]="item.path" routerLinkActive="active" class="nav-link">{{ item.label }}</a>
+        </li>
+
+
+      </ul>
+
+    </div>
+  </div>
+</nav>

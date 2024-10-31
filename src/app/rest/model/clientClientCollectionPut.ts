@@ -9,7 +9,10 @@
  */
 
 
-export interface LoginCheckPost200Response { 
-    readonly token: string;
+/**
+ * Gestion des clients de notre application
+ */
+export interface ClientClientCollectionPut { 
+    address: string;
 }
 

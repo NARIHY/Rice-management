@@ -9,7 +9,11 @@
  */
 
 
-export interface LoginCheckPost200Response { 
-    readonly token: string;
+/**
+ * 
+ */
+export interface GenderManagementClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet { 
+    readonly id?: number;
+    genderName?: string;
 }
 

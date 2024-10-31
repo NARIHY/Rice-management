@@ -3,9 +3,15 @@ import { CommonModule } from '@angular/common';
 import { MenuClientComponent } from '../commons/menu-client/menu-client.component';
 import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LogoutComponent } from '../commons/logout/logout.component';
+import { HeaderAdminComponent } from '../commons/header-admin/header-admin.component';
+import { LoaderComponent } from '../commons/loader/loader.component';
 @NgModule({
   declarations: [
-    MenuClientComponent // Declare the component here
+    MenuClientComponent,
+    LogoutComponent,
+    HeaderAdminComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,
@@ -16,7 +22,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule
   ],
   exports: [
-    MenuClientComponent // Export the component so it can be used in other modules
+    MenuClientComponent,
+    LogoutComponent,
+    HeaderAdminComponent,
+    LoaderComponent
   ]
 })
 export class SharedModule {}

@@ -1,13 +1,18 @@
-
-<div class="row mb-3">
+<app-header-admin></app-header-admin>
+<div class="row mb-3" style="margin-top: 10px;">
   <div class="col-md-2"> <!-- Réduit la largeur du menu -->
     <app-menu-client></app-menu-client>
   </div>
-  <div class="col-md-10"> <!-- Augmente la largeur du corps -->
-    <p>
-      test
-    </p>
+  <div class="col-md-9"> <!-- Augmente la largeur du corps -->
+    <div class="container card p-10">
+      <p>
+        test
+      </p>
+    </div>
+
   </div>
+  <app-loader *ngIf="isLoading"></app-loader>
 </div>
+
 
 

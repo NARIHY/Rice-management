@@ -1,8 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
-import { LoginCheckPost200Response, LoginCheckService } from 'src/app/rest';
+import { staticTextFR } from '../../text/staticText';
+import { AuthService } from 'src/app/services/AuthService.service';
 
 @Component({
   selector: 'app-login',
@@ -12,49 +13,40 @@ import { LoginCheckPost200Response, LoginCheckService } from 'src/app/rest';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-
-  ngOnInit(): void {
-  }
+  staticTextFr = staticTextFR;
   isLoading: boolean = false;
 
-  constructor(private router: Router, private fb: FormBuilder, @Inject(LoginCheckService) private loginCheckService: LoginCheckService) {
-    this.loader();
+  constructor(private router: Router, private fb: FormBuilder, private authService: AuthService) {
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required, Validators.email]], // Changer 'username' à 'email'
       password: ['', [Validators.required, Validators.minLength(4)]]
     });
   }
 
-  loader()
-  {
-    if(this.isLoading === false) {
-      this.isLoading = true;
-      setTimeout(() => {
-        this.isLoading = false;
-      }, 2000);
-    }
-  }
+  ngOnInit(): void {}
 
   onSubmit(): void {
     this.isLoading = true;
     if (!this.loginForm.valid) {
       console.log('Form not valid');
+      this.isLoading = false;
       return;
     }
 
+    const { username, password } = this.loginForm.value;
 
-    this.loginCheckService.loginCheckPost(this.loginForm.value).subscribe(
-      (response: LoginCheckPost200Response) => {
+    this.authService.login(username, password).subscribe(
+      (response) => {
         localStorage.setItem('token', response.token);
         localStorage.setItem('refreshToken', response.refreshToken);
 
         const decodedToken: any = jwtDecode(response.token);
-        //Mapping en d'tableau
         const roles = Object.values(decodedToken.roles || {});
+
         // Redirection en fonction des rôles
-        if (Array.isArray(roles) && roles.includes('ROLE_ADMIN')) {
+        if (roles.includes('ROLE_ADMIN')) {
           this.router.navigate(['admin']);
-        } else if (Array.isArray(roles) && roles.includes('ROLE_CLIENT')) {
+        } else if (roles.includes('ROLE_CLIENT')) {
           this.router.navigate(['client']);
         }
       },
@@ -66,5 +58,4 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-
 }

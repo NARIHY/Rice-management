@@ -6,7 +6,7 @@
       <!-- Champ Email -->
       <div class="form-field">
         <input type="email" id="email" formControlName="email" required placeholder=" ">
-        <label for="email">Email</label>
+        <label for="email">{{staticTextFr.email}}</label>
         <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="error-message">
           Un email valide est requis.
         </div>
@@ -15,7 +15,7 @@
       <!-- Champ Mot de passe -->
       <div class="form-field">
         <input type="password" id="password" formControlName="password" required placeholder=" ">
-        <label for="password">Mot de passe</label>
+        <label for="password">{{staticTextFr.password}}</label>
         <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="error-message">
           Le mot de passe est requis (minimum 8 caractères) et doît correspondre à la mots de passe de confirmation.
         </div>
@@ -24,7 +24,7 @@
       <!-- Champ Confirmation du mot de passe -->
       <div class="form-field">
         <input type="password" id="password_confirmation" formControlName="password_confirmation" required placeholder=" ">
-        <label for="password_confirmation">Confirmer le mot de passe</label>
+        <label for="password_confirmation">{{ staticTextFr.passwordConfirmation }}</label>
         <div *ngIf="registerForm.get('password_confirmation')?.invalid && registerForm.get('password_confirmation')?.touched" class="error-message">
           La confirmation du mot de passe est requise et doît être pareil que celle du mots de passe entrer en haut.
         </div>
@@ -48,9 +48,9 @@
 
     <!-- end feedback -->
     <div class="reset-password">
-      <a href="#" class="reset-password-link">Mot de passe oublié ?</a>
+      <a href="#" class="reset-password-link">{{staticTextFr.passwordForgotten}}</a>
       <a routerLink="/"  class="reset-password-link">Retour à l'acceuil</a>
-      <a routerLink="/login"  class="reset-password-link">Se connecter</a>
+      <a routerLink="/login"  class="reset-password-link">{{staticTextFr.login}}</a>
     </div>
   </div>
 </div>

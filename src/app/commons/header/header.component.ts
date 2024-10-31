@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as path from 'path';
 
 @Component({
   selector: 'app-header',
@@ -9,14 +10,29 @@ export class HeaderComponent implements OnInit {
 
   isMenuOpen = false;
 
-  //ALL of my menu
-  menuItems = [
-    { path: '/home', label: 'Accueil' },
-    { path: '/information', label: 'Information' },
-    { path: '/contact', label: 'Nous contacter' },
-    { path: '/register', label: "S'inscrire" },
-    { path: '/login', label: 'Connexion' }
-  ];
+  menuItems;
+  //for menu of user connected and non connected
+  constructor () {
+    const token = localStorage.getItem('token');
+    if(token) {
+        this.menuItems = [
+          { path: '/home', label: 'Accueil' },
+          { path: '/information', label: 'Information' },
+          { path: '/contact', label: 'Nous contacter' },
+          { path:'/client/dashboard', label: 'Tableau de bord' },
+          { path: '/logout', label: 'Se déconnecter' }
+        ];
+    } else {
+      this.menuItems = [
+        { path: '/home', label: 'Accueil' },
+        { path: '/information', label: 'Information' },
+        { path: '/contact', label: 'Nous contacter' },
+        { path: '/register', label: "S'inscrire" },
+        { path: '/login', label: 'Connexion' }
+      ];
+    }
+  }
+
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;

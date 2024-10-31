@@ -1,30 +1,29 @@
 <div class="centre">
   <div class="form-container">
-    <h2 class="text-center">Connexion</h2>
+    <h2 class="text-center">{{ staticTextFr.conection }}</h2>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="form-field">
         <input type="email" id="email" formControlName="username" required placeholder="">
-        <label for="email">Email</label>
+        <label for="email">{{ staticTextFr.email }}</label>
         <div *ngIf="loginForm.get('username')?.invalid && (loginForm.get('username')?.touched || loginForm.get('username')?.dirty)">
-          <small *ngIf="loginForm.get('username')?.errors?.['required']">Email requis.</small>
-          <small *ngIf="loginForm.get('username')?.errors?.['email']">Email invalide.</small>
+          <small *ngIf="loginForm.get('username')?.errors?.['required']" style="color: brown;">Email requis.</small>
+          <small *ngIf="loginForm.get('username')?.errors?.['email']" style="color: brown;">Email invalide.</small>
         </div>
       </div>
 
       <div class="form-field">
         <input type="password" id="password" formControlName="password" required placeholder="">
-        <label for="password">Mot de passe</label>
+        <label for="password">{{ staticTextFr.password }}</label>
         <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)">
-          <small *ngIf="loginForm.get('password')?.errors?.['required']">Mot de passe requis.</small>
-          <small *ngIf="loginForm.get('password')?.errors?.['minlength']">Le mot de passe doit avoir au moins 6 caractères.</small>
+          <small *ngIf="loginForm.get('password')?.errors?.['required']" style="color: brown;">Mot de passe requis.</small>
         </div>
       </div>
 
       <button type="submit" [disabled]="loginForm.invalid">Se connecter</button>
 
       <div class="reset-password">
-        <a href="#" class="reset-password-link">Mot de passe oublié ?</a>
-        <a routerLink="/register" class="reset-password-link">S'incrire</a>
+        <a href="#" class="reset-password-link">{{ staticTextFr.passwordForgotten }}</a>
+        <a routerLink="/register" class="reset-password-link">{{ staticTextFr.register }}</a>
         <a routerLink="/" class="reset-password-link">Retour à l'acceuil</a>
       </div>
     </form>

@@ -16,8 +16,8 @@ export class AuthService {
   }
 
   // User Login
-  login(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, { email, password });
+  login(username: string, password: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/login`, { username, password });
   }
 
   // User Logout
@@ -34,5 +34,25 @@ export class AuthService {
       Authorization: token,
     });
     return this.http.get(`${this.apiUrl}/check-connection`, { headers });
+  }
+
+  // Refresh Token
+  refreshToken(refreshToken: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/token/refresh`, { refreshToken });
+  }
+
+  // Getters et Setters pour les tokens
+  getToken(): string {
+    const token = localStorage.getItem('token');
+    return token ?? '';
+  }
+
+  setToken(token: string): void {
+    localStorage.removeItem('token');
+    localStorage.setItem('token', token);
+  }
+
+  getRefreshToken(): string {
+    return localStorage.getItem('refreshToken') ?? '';
   }
 }

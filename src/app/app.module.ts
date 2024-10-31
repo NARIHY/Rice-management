@@ -16,10 +16,13 @@ import { RegisterComponent } from './auth/register/register.component';
 import { HomeComponent } from './public/home/home.component';
 import { InformationComponent } from './public/information/information.component';
 import { ImageCarrousselComponent } from './commons/image-carroussel/image-carroussel.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MenuClientComponent } from './commons/menu-client/menu-client.component';
 import { NgbAccordionModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from './shared/shared.module';
+import { LogoutComponent } from './commons/logout/logout.component';
+import { HeaderAdminComponent } from './commons/header-admin/header-admin.component';
+import { TokenInterceptor } from './services/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,6 @@ import { SharedModule } from './shared/shared.module';
     NotFoundComponent,
     HeaderComponent,
     FooterComponent,
-    LoaderComponent,
     ContactFormComponent,
     PanneComponent,
     LoginComponent,
@@ -48,7 +50,14 @@ import { SharedModule } from './shared/shared.module';
     NgbAccordionModule,
     SharedModule,
   ],
-  providers: [],
+
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
   exports: [
 

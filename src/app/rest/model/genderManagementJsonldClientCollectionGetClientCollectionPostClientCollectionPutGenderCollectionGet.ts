@@ -13,15 +13,11 @@ import { ArrivalJsonldArrivalCollectionGetArrivalCollectionPostStatusesCollectio
 /**
  * 
  */
-export interface UserJsonldReadUser { 
+export interface GenderManagementJsonldClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet { 
+    '@context'?: ArrivalJsonldArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPostContext;
     readonly '@id'?: string;
     readonly '@type'?: string;
-    '@context'?: ArrivalJsonldArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPostContext;
-    email?: string;
-    /**
-     * The user roles
-     */
-    roles?: Array<string>;
-    createdAt?: string | null;
+    readonly id?: number;
+    genderName?: string;
 }
 
