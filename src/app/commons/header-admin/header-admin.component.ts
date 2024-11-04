@@ -40,7 +40,7 @@ export class HeaderAdminComponent implements OnInit {
         this.user = response; // Assurez-vous que response a la bonne structure
         // Vérifiez que l'utilisateur est défini et extrait userIdentifier
         if (this.user) {
-          this.userIdentifier = this.user.userIdentifier; // Accéder à userIdentifier
+          this.userIdentifier = this.user.userIdentifier ?? null; // Accéder à userIdentifier
         }
       }
     );

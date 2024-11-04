@@ -17,6 +17,6 @@ export interface ApiMeGetCollection200Response {
     totalItems?: number;
     view?: ApiArrivalsGetCollection200ResponseView;
     search?: ApiArrivalsGetCollection200ResponseSearch;
-    userIdentifier: string;
+    userIdentifier?: string;
 }
 

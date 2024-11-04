@@ -18,5 +18,6 @@ export interface ClientClientCollectionPostClientCollectionPut {
     cin: string;
     address: string;
     gender?: string | null;
+    user?: string | null;
 }
 

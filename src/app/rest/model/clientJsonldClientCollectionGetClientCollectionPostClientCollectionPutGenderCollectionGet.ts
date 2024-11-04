@@ -24,5 +24,6 @@ export interface ClientJsonldClientCollectionGetClientCollectionPostClientCollec
     cin: string;
     address: string;
     gender?: GenderManagementJsonldClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet | null;
+    user?: string | null;
 }
 

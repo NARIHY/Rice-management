@@ -56,6 +56,13 @@ export class MenuClientComponent implements OnInit, AfterViewInit, OnDestroy {
           icon: 'bi bi-bar-chart',
           isSelected: false,
           link: ['', { outlets: { primary: 'client/Statistics' } }]
+        },
+        {
+          name: 'profile-client',
+          displayName: 'profile client',
+          icon: 'bi bi-gem',
+          isSelected: false,
+          link: ['', { outlets: { primary: 'client/profile-client' } }]
         }
       ]
     },

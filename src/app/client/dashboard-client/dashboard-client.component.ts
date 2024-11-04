@@ -12,7 +12,7 @@ export class DashboardClientComponent implements OnInit {
   constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    this.loader
+    this.loader()
   }
   loader()
   {

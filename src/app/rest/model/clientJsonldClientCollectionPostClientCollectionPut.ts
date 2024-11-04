@@ -18,5 +18,6 @@ export interface ClientJsonldClientCollectionPostClientCollectionPut {
     cin: string;
     address: string;
     gender?: string | null;
+    user?: string | null;
 }
 
