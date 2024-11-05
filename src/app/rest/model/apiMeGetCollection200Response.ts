@@ -12,11 +12,19 @@ import { UserJsonldReadUser } from './userJsonldReadUser';
 import { ApiArrivalsGetCollection200ResponseView } from './apiArrivalsGetCollection200ResponseView';
 
 
+export enum Role {
+  CLIENT = "ROLE_CLIENT",
+  PUBLIC_ACCESS = "PUBLIC_ACCESS",
+}
 export interface ApiMeGetCollection200Response {
     member: Array<UserJsonldReadUser>;
     totalItems?: number;
     view?: ApiArrivalsGetCollection200ResponseView;
     search?: ApiArrivalsGetCollection200ResponseSearch;
     userIdentifier?: string;
+    id?: string;
+    client?: string;
+    roles?: Record<number, Role>;
+    createdAt?: Date;
 }
 

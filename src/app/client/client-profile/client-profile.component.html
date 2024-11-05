@@ -10,56 +10,119 @@
               <div *ngIf="isLoading">Chargement...</div>
                 <div *ngIf="!isLoading && user">
                   <ng-container *ngIf="isNewClient(); else existingClient">
-                    <div>
-                      <h1>Créer un nouveau client</h1>
+                    <div class="container mt-5">
+                      <h1 class="mb-4 text-center">S'inscrire chez nous</h1>
                       <form [formGroup]="clientForm" (ngSubmit)="submitNewClient()">
-                        <label for="clientName">Nom:</label>
-                        <input id="clientName" formControlName="name" />
-                        <div *ngIf="clientForm.get('name')?.invalid && (clientForm.get('name')?.touched || clientForm.get('name')?.dirty)">
-                          <small *ngIf="clientForm.get('name')?.errors?.['required']">Le nom est requis.</small>
+
+                        <!-- Nom -->
+                        <div class="mb-3">
+                          <label for="clientName" class="form-label">Nom:</label>
+                          <input id="clientName" type="text" class="form-control" formControlName="name" />
+                          <div *ngIf="clientForm.get('name')?.invalid && (clientForm.get('name')?.touched || clientForm.get('name')?.dirty)" class="text-danger">
+                            <small *ngIf="clientForm.get('name')?.errors?.['required']">Le nom est requis.</small>
+                          </div>
                         </div>
 
-                        <label for="clientLastName">Prénom:</label>
-                        <input id="clientLastName" formControlName="lastName" />
-                        <div *ngIf="clientForm.get('lastName')?.invalid && (clientForm.get('lastName')?.touched || clientForm.get('lastName')?.dirty)">
-                          <small *ngIf="clientForm.get('lastName')?.errors?.['required']">Le prénom est requis.</small>
+                        <!-- Prénom -->
+                        <div class="mb-3">
+                          <label for="clientLastName" class="form-label">Prénom:</label>
+                          <input id="clientLastName" type="text" class="form-control" formControlName="lastName" />
+                          <div *ngIf="clientForm.get('lastName')?.invalid && (clientForm.get('lastName')?.touched || clientForm.get('lastName')?.dirty)" class="text-danger">
+                            <small *ngIf="clientForm.get('lastName')?.errors?.['required']">Le prénom est requis.</small>
+                          </div>
                         </div>
 
-                        <label for="clientCin">CIN:</label>
-                        <input id="clientCin" formControlName="cin" />
-                        <div *ngIf="clientForm.get('cin')?.invalid && (clientForm.get('cin')?.touched || clientForm.get('cin')?.dirty)">
-                          <small *ngIf="clientForm.get('cin')?.errors?.['required']">Le CIN est requis.</small>
-                          <small *ngIf="clientForm.get('cin')?.errors?.['minlength']">Le CIN doit contenir au moins 8 caractères.</small>
-                          <small *ngIf="clientForm.get('cin')?.errors?.['maxlength']">Le CIN ne peut pas dépasser 16 caractères.</small>
+                        <!-- CIN -->
+                        <div class="mb-3">
+                          <label for="clientCin" class="form-label">CIN (12 chiffres):</label>
+                          <div class="d-flex justify-content-between">
+                            <input
+                              *ngFor="let field of cinFields; let i = index"
+                              [formControlName]="'cin' + i"
+                              id="cin{{i}}"
+                              type="number"
+                              class="form-control text-center"
+                              style="margin-right: 10px;"
+                              maxlength="1"
+                              min="0"
+                              max="9"
+                              [attr.aria-label]="'Chiffre ' + (i + 1)"
+                              (input)="onInputChange($event, i)"
+                            />
+                          </div>
+                          <div *ngIf="cinFieldsInvalid" class="text-danger">
+                            <small>Le CIN doit contenir exactement 12 chiffres.</small>
+                          </div>
                         </div>
 
-                        <label for="clientAddress">Adresse:</label>
-                        <input id="clientAddress" formControlName="address" />
-                        <div *ngIf="clientForm.get('address')?.invalid && (clientForm.get('address')?.touched || clientForm.get('address')?.dirty)">
-                          <small *ngIf="clientForm.get('address')?.errors?.['required']">L'adresse est requise.</small>
+                        <!-- Adresse -->
+                        <div class="mb-3">
+                          <label for="clientAddress" class="form-label">Adresse:</label>
+                          <input id="clientAddress" type="text" class="form-control" formControlName="address" />
+                          <div *ngIf="clientForm.get('address')?.invalid && (clientForm.get('address')?.touched || clientForm.get('address')?.dirty)" class="text-danger">
+                            <small *ngIf="clientForm.get('address')?.errors?.['required']">L'adresse est requise.</small>
+                          </div>
                         </div>
 
-                        <label for="clientGender">Genre:</label>
-                        <select id="clientGender" formControlName="gender">
-                          <option value="">Sélectionnez</option>
-                          <option *ngFor="let gender of genders" [value]="gender.genderName">
-                            {{ gender.genderName }}
-                          </option>
-                        </select>
+                        <!-- Genre -->
+                        <div class="mb-3">
+                          <label for="clientGender" class="form-label">Genre:</label>
+                          <select id="clientGender" class="form-select" formControlName="gender">
+                            <option value="">Sélectionnez</option>
+                            <option *ngFor="let gender of allMembers" [value]="gender.id">
+                              {{ gender.genderName }}
+                            </option>
+                          </select>
+                        </div>
 
-                        <button type="submit" [disabled]="clientForm.invalid">Créer le client</button>
+                        <!-- Bouton de soumission -->
+                        <button type="submit" class="btn btn-primary" [disabled]="clientForm.invalid">Créer le client</button>
                       </form>
                     </div>
+
+                    <!-- Alert for feedback -->
+                    <ng-container *ngIf="showModal">
+                      <div class="alert alert-{{alertType}} alert-dismissible fade show m-4" role="alert">
+                        <strong>{{ modalTitle }}</strong> {{ modalMessage }}
+                        <button type="button" class="btn-close" (click)="showModal = false" aria-label="Close"></button>
+                      </div>
+                    </ng-container>
+
 
                   </ng-container>
 
                   <ng-template #existingClient>
-                    <h1>Détails du client enregistré</h1>
-                    <div *ngFor="let member of user.member">
-                      <p>ID: {{ member.email }}</p>
-                      <p>Nom: {{ member.roles }}</p>
-                      <p>Email: {{ member.createdAt | date }}</p>
+
+                    <!-- Existing client  -->
+                    <div class="container mt-5">
+                      <div class="card">
+                        <div class="card-header bg-primary text-white">
+                          <h1>Détails du client</h1>
+                        </div>
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <p><strong>Nom:</strong>{{ client?.name| uppercase }}</p>
+                              <p ><strong>Prénom:</strong> {{ client?.lastName! | capitalizeFirstLetter }}</p>
+                              <p><strong>CIN:</strong> {{ client?.cin }} </p>
+                              <p><strong>Adresse:</strong> {{client?.address}} </p>
+                              <p><strong>Zone de provenance:</strong> {{ client?.cin_provenance?.zone }} </p>
+                              <!-- <p><strong>Région:</strong> {{client[0].}} </p> -->
+                              <p><strong>Province:</strong>  {{ client?.cin_provenance?.province }} </p>
+                              <p><strong>Pays:</strong> MADAGASCAR </p>
+                              <p><strong>Code postal:</strong> {{ client?.cin_provenance?.postal_code }} </p>
+                              <p><strong>Genre:</strong> {{ client?.gender?.genderName }} </p>
+                              <p><strong>Identifiant de l'utilisateur:</strong> {{user.userIdentifier}} </p>
+                            </div>
+                            <div class="col-md-6">
+                              <p><strong>Date de création:</strong> {{ user.createdAt | date: 'dd MMMM yyyy, HH:mm' }}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
+
+
                   </ng-template>
                 </div>
 

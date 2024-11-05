@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ApiMeGetCollection200Response, ClientClientCollectionPostClientCollectionPut, UserService } from 'src/app/rest';
-import { AuthService } from 'src/app/services/AuthService.service';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ApiMeGetCollection200Response, ClientClientCollectionPostClientCollectionPut, ClientJsonldClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet, UserService } from 'src/app/rest';
 import { ClientService } from '../../rest/api/client.service';
 import { GenderManagementService } from '../../rest/api/genderManagement.service';
-import { GenderManagementClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet } from '../../rest/model/genderManagementClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet';
 import { ApiGendersGetCollection200Response } from '../../rest/model/apiGendersGetCollection200Response';
+import { GenderManagementJsonldGenderCollectionGet } from '../../rest/model/genderManagementJsonldGenderCollectionGet';
+
+
 
 @Component({
   selector: 'app-client-profile',
@@ -13,28 +14,72 @@ import { ApiGendersGetCollection200Response } from '../../rest/model/apiGendersG
   styleUrls: ['./client-profile.component.css']
 })
 export class ClientProfileComponent implements OnInit {
-
   user: ApiMeGetCollection200Response | null = null;
   isLoading: boolean = false;
-  genders:  ApiGendersGetCollection200Response[] = [];
+  genders: ApiGendersGetCollection200Response[] = []; // Tableau pour stocker les genres
+  allMembers: GenderManagementJsonldGenderCollectionGet[] = [];
   clientForm: FormGroup;
+  cinFields: number[] = new Array(12).fill(0); // Tableau pour les 12 chiffres du CIN
+  cinFieldsInvalid: boolean = false;
 
-  constructor(private userService: UserService,private fb: FormBuilder, private clientService:  ClientService, private genderManagements :GenderManagementService) {
+
+  // Variables pour afficher l'alerte
+  showModal: boolean = false;
+  modalTitle: string = '';
+  modalMessage: string = '';
+  alertType: string = ''; // 'success' ou 'danger'
+
+  // Client
+  client?: ClientJsonldClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet;
+  constructor(
+    private userService: UserService,
+    private fb: FormBuilder,
+    private clientService: ClientService,
+    private genderManagementService: GenderManagementService,
+  ) {
+    // Utilisation de FormControl pour chaque champ de CIN
+    const controls: { [key: string]: AbstractControl } = this.cinFields.reduce((acc: { [key: string]: AbstractControl }, _, i) => {
+      acc['cin' + i] = new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(1),
+        Validators.pattern('[0-9]') // Validation pour autoriser uniquement un chiffre
+      ]);
+      return acc;
+    }, {} as { [key: string]: AbstractControl });
 
     this.clientForm = this.fb.group({
       name: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      cin: ['', [Validators.required, Validators.minLength(12), Validators.maxLength(12)]],
       address: ['', [Validators.required]],
-      gender: [null] // Peut être null si non requis
+      // Crée 12 contrôles pour chaque chiffre du CIN
+      ...controls,
+      gender: ['', [Validators.required]]
     });
   }
 
   ngOnInit(): void {
     this.getUserData();
-    this.getGenders();
+    this.loadGenders();
   }
 
+  // Fonction pour gérer le changement d'entrée et déplacer le focus
+  onInputChange(event: Event, index: number): void {
+    const input = event.target as HTMLInputElement;
+    if (input.value && index < 11) {
+      document.getElementById('cin' + (index + 1))?.focus();
+    }
+    this.checkCinValidity();
+  }
+
+  // Vérifie si tous les champs CIN sont remplis correctement
+  checkCinValidity() {
+    const cinValues = this.cinFields.map((_, i) => this.clientForm.get('cin' + i)?.value);
+    const isCinValid = cinValues.every(value => value !== null && value !== '');
+    this.cinFieldsInvalid = !isCinValid; // Si un champ est vide, on considère que le CIN est invalide
+  }
+
+  // Affichage du loader
   loader() {
     this.isLoading = true;
     setTimeout(() => {
@@ -42,57 +87,147 @@ export class ClientProfileComponent implements OnInit {
     }, 2000);
   }
 
+  // Récupération des données de l'utilisateur
   getUserData() {
-    this.loader(); // Démarrer le loader avant de faire l'appel
+    this.loader(); // Démarre le loader avant de faire l'appel
     this.userService.apiMeGetCollection().subscribe(
       (response: ApiMeGetCollection200Response) => {
-        this.user = response; // Assurez-vous que response a la bonne structure
-        this.isLoading = false; // Arrêter le loader après avoir reçu la réponse
-
-        // Vérifiez que l'utilisateur est défini et traitez les membres
-        if (this.user) {
-          // Vous pouvez également accéder à userIdentifier ici si nécessaire
-          console.log('User Identifier:', this.user.userIdentifier);
-        }
-      },
-      (error) => {
-        console.error('Erreur lors de la récupération des données:', error);
-        this.isLoading = false; // Arrêter le loader en cas d'erreur
+        this.user = response;
+        this.getClientSaved();
+        this.isLoading = false; // Arrête le loader après réception des données
       }
     );
+
+
   }
 
+  // Vérifie si l'utilisateur est un nouveau client
   isNewClient(): boolean {
-    return !this.user?.member || this.user.member.length === 0;
+    if(this.user?.client) {
+      return false;
+    }
+    return true;
   }
 
+  // Soumission du formulaire pour un nouveau client
   submitNewClient() {
     if (this.clientForm.valid) {
-      const newClient: ClientClientCollectionPostClientCollectionPut = this.clientForm.value;
-      this.clientService.apiClientsPost(newClient).subscribe(
+      const cinValues = this.cinFields.map((_, i) => this.clientForm.get('cin' + i)?.value);
+      const cinString = cinValues.join('');
+      const { cin0, cin1, cin2, cin3, cin4, cin5, cin6, cin7, cin8, cin9, cin10, cin11, ...newClientWithoutCin } = this.clientForm.value;
+
+      const clientData = {
+        ...newClientWithoutCin,
+        cin: this.formatCin(cinString),
+        gender: `api/genders/${this.clientForm.value.gender}`
+      };
+
+      this.clientService.apiClientsPost(clientData).subscribe(
         response => {
-          console.log('Client créé avec succès:', response);
+          this.showAlert('Succès', 'Le client a été créé avec succès !', 'success');
           this.resetForm();
-        },
-        error => {
-          console.error('Erreur lors de la création du client:', error);
         }
       );
     } else {
       console.log('Formulaire invalide', this.clientForm.errors);
+      Object.keys(this.clientForm.controls).forEach(controlName => {
+        const control = this.clientForm.get(controlName);
+      });
+      this.showAlert('Erreur', 'Veuillez remplir correctement tous les champs du formulaire.', 'danger');
     }
   }
 
+  // Fonction pour afficher l'alerte
+  showAlert(title: string, message: string, type: string) {
+    this.modalTitle = title;
+    this.modalMessage = message;
+    this.alertType = type;
+    this.showModal = true;
+  }
+
+
+  // Réinitialisation du formulaire
   resetForm() {
     this.clientForm.reset();
   }
 
-  getGenders() {
-    this.genderManagements.apiGendersGetCollection().subscribe(
+  // Chargement des genres à partir du service
+  loadGenders(): void {
+    this.isLoading = true;
+    this.genderManagementService.apiGendersGetCollection().subscribe(
       (response: ApiGendersGetCollection200Response) => {
-        this.genders.push(response);
-        console.log(this.genders)
+        // Si la réponse est un tableau, on peut simplement assigner
+        if (Array.isArray(response)) {
+          this.genders = response;
+        } else {
+          this.genders.push(response);
+        }
+        this.isLoading = false;
+        this.getAllMembers(); // Récupère tous les membres
       }
     );
   }
+
+  rolesArray(): string[] {
+    return this.user?.roles ? Object.values(this.user.roles) : [];
+  }
+
+
+  getClientSaved() {
+    // Vérifier la valeur de this.user?.client avant d'appeler getClientId
+    console.log('this.user?.client:', this.user); // Affiche ce que contient `this.user?.client`
+
+    if (typeof this.user?.client === 'string') {
+      const clientId = this.getClientId(this.user?.client);
+
+      // Vérifier si clientId est valide avant de faire l'appel
+      if (clientId) {
+        this.clientService.apiClientsIdGet(clientId).subscribe(
+          (response) => {
+            console.log(response.name)
+            this.client = response;
+          }
+        );
+        console.log(this.client);
+      }
+    }
+  }
+
+
+  // Récupération des membres associés aux genres
+  private getAllMembers(): void {
+    this.allMembers = []; // Réinitialise la liste des membres
+    this.genders.forEach(gender => {
+      if (gender.member && Array.isArray(gender.member)) {
+        this.allMembers = [...this.allMembers, ...gender.member];
+      }
+    });
+  }
+
+  // Fonction pour assembler les chiffres du CIN en une chaîne formatée "xxx xxx xxx xxx"
+  private formatCin(cinValues: string): string {
+    // Vérifier si la chaîne contient uniquement des chiffres
+    if (!cinValues || !/^\d+$/.test(cinValues)) {
+      return cinValues; // Si ce n'est pas une chaîne de chiffres, retournez la valeur originale
+    }
+
+    // Ajouter un espace tous les 3 chiffres
+    const formattedCin = cinValues.replace(/(\d{3})(?=\d)/g, '$1 ');
+
+    return formattedCin;
+  }
+
+  private getClientId(url: string): string | null {
+
+    // Utiliser l'expression régulière pour extraire l'ID
+    const match = url.match(/\/clients\/(\d+)/);
+
+    if (match) {
+      const clientId = match[1]; // Affiche l'ID du client
+      return clientId;
+    } else {
+      return null; // Retourne null si aucune correspondance n'est trouvée
+    }
+  }
+
 }
