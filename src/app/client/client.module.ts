@@ -8,13 +8,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ClientProfileComponent } from './client-profile/client-profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CapitalizeFirstLetterPipe } from '../pipe/capitalize-first-letter.pipe';
+import { ClientModificationComponent } from './client-profile/client-modification/client-modification.component';
 
 
 @NgModule({
   declarations: [
     DashboardClientComponent,
     ClientProfileComponent,
-    CapitalizeFirstLetterPipe
+    CapitalizeFirstLetterPipe,
+    ClientModificationComponent
   ],
   imports: [
     CommonModule,

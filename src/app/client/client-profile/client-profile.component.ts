@@ -5,6 +5,8 @@ import { ClientService } from '../../rest/api/client.service';
 import { GenderManagementService } from '../../rest/api/genderManagement.service';
 import { ApiGendersGetCollection200Response } from '../../rest/model/apiGendersGetCollection200Response';
 import { GenderManagementJsonldGenderCollectionGet } from '../../rest/model/genderManagementJsonldGenderCollectionGet';
+import { ClientModificationComponent } from './client-modification/client-modification.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -29,6 +31,8 @@ export class ClientProfileComponent implements OnInit {
   modalMessage: string = '';
   alertType: string = ''; // 'success' ou 'danger'
 
+  // Id of client
+  cllId: string = "";
   // Client
   client?: ClientJsonldClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet;
   constructor(
@@ -36,6 +40,7 @@ export class ClientProfileComponent implements OnInit {
     private fb: FormBuilder,
     private clientService: ClientService,
     private genderManagementService: GenderManagementService,
+    private modalService: NgbModal
   ) {
     // Utilisation de FormControl pour chaque champ de CIN
     const controls: { [key: string]: AbstractControl } = this.cinFields.reduce((acc: { [key: string]: AbstractControl }, _, i) => {
@@ -61,6 +66,7 @@ export class ClientProfileComponent implements OnInit {
   ngOnInit(): void {
     this.getUserData();
     this.loadGenders();
+    this.getClientSaved();
   }
 
   // Fonction pour gérer le changement d'entrée et déplacer le focus
@@ -174,18 +180,16 @@ export class ClientProfileComponent implements OnInit {
 
 
   getClientSaved() {
-    // Vérifier la valeur de this.user?.client avant d'appeler getClientId
-    console.log('this.user?.client:', this.user); // Affiche ce que contient `this.user?.client`
 
     if (typeof this.user?.client === 'string') {
       const clientId = this.getClientId(this.user?.client);
-
       // Vérifier si clientId est valide avant de faire l'appel
       if (clientId) {
         this.clientService.apiClientsIdGet(clientId).subscribe(
           (response) => {
             console.log(response.name)
             this.client = response;
+            this.cllId = clientId;
           }
         );
         console.log(this.client);
@@ -193,6 +197,14 @@ export class ClientProfileComponent implements OnInit {
     }
   }
 
+   // Ouvrir le modal pour la modification du client
+   openClientModificationModal() {
+    const modalRef = this.modalService.open(ClientModificationComponent, {
+      size: 'lg'
+    });
+    modalRef.componentInstance.client = this.client; // Injection des données du client
+    modalRef.componentInstance.clientId = this.cllId;
+  }
 
   // Récupération des membres associés aux genres
   private getAllMembers(): void {

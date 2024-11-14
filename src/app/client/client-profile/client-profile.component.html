@@ -6,7 +6,7 @@
             <app-menu-client></app-menu-client>
         </div>
         <div class="col mt-4">
-            <div class="container card p-3">
+            <div class="container card p-3 w-100">
               <div *ngIf="isLoading">Chargement...</div>
                 <div *ngIf="!isLoading && user">
                   <ng-container *ngIf="isNewClient(); else existingClient">
@@ -95,7 +95,7 @@
 
                     <!-- Existing client  -->
                     <div class="container mt-5">
-                      <div class="card">
+                      <div class="card w-100">
                         <div class="card-header bg-primary text-white">
                           <h1>Détails du client</h1>
                         </div>
@@ -116,6 +116,7 @@
                             </div>
                             <div class="col-md-6">
                               <p><strong>Date de création:</strong> {{ user.createdAt | date: 'dd MMMM yyyy, HH:mm' }}</p>
+                              <button (click)="openClientModificationModal()" class="btn btn-primary">Editer vos informations</button>
                             </div>
                           </div>
                         </div>
