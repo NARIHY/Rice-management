@@ -69,7 +69,7 @@
                           <label for="clientGender" class="form-label">Genre:</label>
                           <select id="clientGender" class="form-select" formControlName="gender">
                             <option value="">Sélectionnez</option>
-                            <option *ngFor="let gender of allMembers" [value]="gender.id">
+                            <option *ngFor="let gender of genders" [value]="gender.id">
                               {{ gender.genderName }}
                             </option>
                           </select>

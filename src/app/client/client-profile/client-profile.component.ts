@@ -169,7 +169,7 @@ export class ClientProfileComponent implements OnInit {
           this.genders.push(response);
         }
         this.isLoading = false;
-        this.getAllMembers(); // Récupère tous les membres
+        // this.getAllMembers(); // Récupère tous les membres
       }
     );
   }
@@ -207,14 +207,14 @@ export class ClientProfileComponent implements OnInit {
   }
 
   // Récupération des membres associés aux genres
-  private getAllMembers(): void {
-    this.allMembers = []; // Réinitialise la liste des membres
-    this.genders.forEach(gender => {
-      if (gender.member && Array.isArray(gender.member)) {
-        this.allMembers = [...this.allMembers, ...gender.member];
-      }
-    });
-  }
+  // private getAllMembers(): void {
+  //   this.allMembers = []; // Réinitialise la liste des membres
+  //   this.genders.forEach(gender => {
+  //     if (gender.member && Array.isArray(gender.member)) {
+  //       this.allMembers = [...this.allMembers, ...gender.member];
+  //     }
+  //   });
+  // }
 
   // Fonction pour assembler les chiffres du CIN en une chaîne formatée "xxx xxx xxx xxx"
   private formatCin(cinValues: string): string {
