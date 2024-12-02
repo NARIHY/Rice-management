@@ -17,19 +17,13 @@ import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 // @ts-ignore
-import { ApiClientsGetCollection200Response } from '../model/apiClientsGetCollection200Response';
-// @ts-ignore
 import { ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet } from '../model/clientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet';
 // @ts-ignore
-import { ClientClientCollectionPostClientCollectionPut } from '../model/clientClientCollectionPostClientCollectionPut';
+import { ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGetCinCollectionPostCinCollectionGet } from '../model/clientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGetCinCollectionPostCinCollectionGet';
+// @ts-ignore
+import { ClientClientCollectionPostClientCollectionPutCinCollectionPost } from '../model/clientClientCollectionPostClientCollectionPutCinCollectionPost';
 // @ts-ignore
 import { ClientClientCollectionPut } from '../model/clientClientCollectionPut';
-// @ts-ignore
-import { ClientJsonldClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet } from '../model/clientJsonldClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet';
-// @ts-ignore
-import { ClientJsonldClientCollectionPostClientCollectionPut } from '../model/clientJsonldClientCollectionPostClientCollectionPut';
-// @ts-ignore
-import { ClientJsonldClientCollectionPut } from '../model/clientJsonldClientCollectionPut';
 
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -110,10 +104,10 @@ export class ClientService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiClientsGetCollection(page?: number, name?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<ApiClientsGetCollection200Response>;
-    public apiClientsGetCollection(page?: number, name?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpResponse<ApiClientsGetCollection200Response>>;
-    public apiClientsGetCollection(page?: number, name?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpEvent<ApiClientsGetCollection200Response>>;
-    public apiClientsGetCollection(page?: number, name?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<any> {
+    public apiClientsGetCollection(page?: number, name?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet>>;
+    public apiClientsGetCollection(page?: number, name?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet>>>;
+    public apiClientsGetCollection(page?: number, name?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet>>>;
+    public apiClientsGetCollection(page?: number, name?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         if (page !== undefined && page !== null) {
@@ -138,9 +132,7 @@ export class ClientService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/ld+json',
-                'application/json',
-                'text/html'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -166,7 +158,7 @@ export class ClientService {
         }
 
         let localVarPath = `/api/clients`;
-        return this.httpClient.request<ApiClientsGetCollection200Response>('get', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<Array<ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,
@@ -260,10 +252,10 @@ export class ClientService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiClientsIdGet(id: string, name?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<ClientJsonldClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet>;
-    public apiClientsIdGet(id: string, name?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpResponse<ClientJsonldClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet>>;
-    public apiClientsIdGet(id: string, name?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpEvent<ClientJsonldClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet>>;
-    public apiClientsIdGet(id: string, name?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<any> {
+    public apiClientsIdGet(id: string, name?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGetCinCollectionPostCinCollectionGet>;
+    public apiClientsIdGet(id: string, name?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGetCinCollectionPostCinCollectionGet>>;
+    public apiClientsIdGet(id: string, name?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGetCinCollectionPostCinCollectionGet>>;
+    public apiClientsIdGet(id: string, name?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling apiClientsIdGet.');
         }
@@ -287,9 +279,7 @@ export class ClientService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/ld+json',
-                'application/json',
-                'text/html'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -315,7 +305,7 @@ export class ClientService {
         }
 
         let localVarPath = `/api/clients/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<ClientJsonldClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet>('get', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGetCinCollectionPostCinCollectionGet>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,
@@ -332,20 +322,20 @@ export class ClientService {
      * Replaces the Client resource.
      * Replaces the Client resource.
      * @param id Client identifier
-     * @param clientJsonldClientCollectionPut The updated Client resource
+     * @param clientClientCollectionPut The updated Client resource
      * @param name Client name
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiClientsIdPut(id: string, clientJsonldClientCollectionPut: ClientJsonldClientCollectionPut, name?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<ClientJsonldClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet>;
-    public apiClientsIdPut(id: string, clientJsonldClientCollectionPut: ClientJsonldClientCollectionPut, name?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpResponse<ClientJsonldClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet>>;
-    public apiClientsIdPut(id: string, clientJsonldClientCollectionPut: ClientJsonldClientCollectionPut, name?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpEvent<ClientJsonldClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet>>;
-    public apiClientsIdPut(id: string, clientJsonldClientCollectionPut: ClientJsonldClientCollectionPut, name?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<any> {
+    public apiClientsIdPut(id: string, clientClientCollectionPut: ClientClientCollectionPut, name?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGetCinCollectionPostCinCollectionGet>;
+    public apiClientsIdPut(id: string, clientClientCollectionPut: ClientClientCollectionPut, name?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGetCinCollectionPostCinCollectionGet>>;
+    public apiClientsIdPut(id: string, clientClientCollectionPut: ClientClientCollectionPut, name?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGetCinCollectionPostCinCollectionGet>>;
+    public apiClientsIdPut(id: string, clientClientCollectionPut: ClientClientCollectionPut, name?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling apiClientsIdPut.');
         }
-        if (clientJsonldClientCollectionPut === null || clientJsonldClientCollectionPut === undefined) {
-            throw new Error('Required parameter clientJsonldClientCollectionPut was null or undefined when calling apiClientsIdPut.');
+        if (clientClientCollectionPut === null || clientClientCollectionPut === undefined) {
+            throw new Error('Required parameter clientClientCollectionPut was null or undefined when calling apiClientsIdPut.');
         }
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
@@ -367,9 +357,7 @@ export class ClientService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/ld+json',
-                'application/json',
-                'text/html'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -385,9 +373,7 @@ export class ClientService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
-            'application/ld+json',
-            'application/json',
-            'text/html'
+            'application/json'
         ];
         const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected !== undefined) {
@@ -406,10 +392,10 @@ export class ClientService {
         }
 
         let localVarPath = `/api/clients/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<ClientJsonldClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet>('put', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGetCinCollectionPostCinCollectionGet>('put', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                body: clientJsonldClientCollectionPut,
+                body: clientClientCollectionPut,
                 params: localVarQueryParameters,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -423,17 +409,17 @@ export class ClientService {
     /**
      * Creates a Client resource.
      * Creates a Client resource.
-     * @param clientJsonldClientCollectionPostClientCollectionPut The new Client resource
+     * @param clientClientCollectionPostClientCollectionPutCinCollectionPost The new Client resource
      * @param name Client name
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiClientsPost(clientJsonldClientCollectionPostClientCollectionPut: ClientJsonldClientCollectionPostClientCollectionPut, name?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<ClientJsonldClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet>;
-    public apiClientsPost(clientJsonldClientCollectionPostClientCollectionPut: ClientJsonldClientCollectionPostClientCollectionPut, name?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpResponse<ClientJsonldClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet>>;
-    public apiClientsPost(clientJsonldClientCollectionPostClientCollectionPut: ClientJsonldClientCollectionPostClientCollectionPut, name?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpEvent<ClientJsonldClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet>>;
-    public apiClientsPost(clientJsonldClientCollectionPostClientCollectionPut: ClientJsonldClientCollectionPostClientCollectionPut, name?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<any> {
-        if (clientJsonldClientCollectionPostClientCollectionPut === null || clientJsonldClientCollectionPostClientCollectionPut === undefined) {
-            throw new Error('Required parameter clientJsonldClientCollectionPostClientCollectionPut was null or undefined when calling apiClientsPost.');
+    public apiClientsPost(clientClientCollectionPostClientCollectionPutCinCollectionPost: ClientClientCollectionPostClientCollectionPutCinCollectionPost, name?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGetCinCollectionPostCinCollectionGet>;
+    public apiClientsPost(clientClientCollectionPostClientCollectionPutCinCollectionPost: ClientClientCollectionPostClientCollectionPutCinCollectionPost, name?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGetCinCollectionPostCinCollectionGet>>;
+    public apiClientsPost(clientClientCollectionPostClientCollectionPutCinCollectionPost: ClientClientCollectionPostClientCollectionPutCinCollectionPost, name?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGetCinCollectionPostCinCollectionGet>>;
+    public apiClientsPost(clientClientCollectionPostClientCollectionPutCinCollectionPost: ClientClientCollectionPostClientCollectionPutCinCollectionPost, name?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+        if (clientClientCollectionPostClientCollectionPutCinCollectionPost === null || clientClientCollectionPostClientCollectionPutCinCollectionPost === undefined) {
+            throw new Error('Required parameter clientClientCollectionPostClientCollectionPutCinCollectionPost was null or undefined when calling apiClientsPost.');
         }
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
@@ -455,9 +441,7 @@ export class ClientService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/ld+json',
-                'application/json',
-                'text/html'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -473,9 +457,7 @@ export class ClientService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
-            'application/ld+json',
-            'application/json',
-            'text/html'
+            'application/json'
         ];
         const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected !== undefined) {
@@ -494,10 +476,10 @@ export class ClientService {
         }
 
         let localVarPath = `/api/clients`;
-        return this.httpClient.request<ClientJsonldClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet>('post', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGetCinCollectionPostCinCollectionGet>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                body: clientJsonldClientCollectionPostClientCollectionPut,
+                body: clientClientCollectionPostClientCollectionPutCinCollectionPost,
                 params: localVarQueryParameters,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,

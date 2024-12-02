@@ -10,9 +10,12 @@
 
 
 /**
- * Gestion des clients de notre application
+ * 
  */
-export interface ClientJsonldClientCollectionPut { 
-    address: string;
+export interface CinCinCollectionGet { 
+    locationZone?: string;
+    locationRegion?: string | null;
+    locationProvince?: string | null;
+    country?: string | null;
 }
 

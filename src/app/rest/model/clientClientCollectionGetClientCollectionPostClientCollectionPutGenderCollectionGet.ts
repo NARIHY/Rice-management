@@ -21,5 +21,6 @@ export interface ClientClientCollectionGetClientCollectionPostClientCollectionPu
     address: string;
     gender?: GenderManagementClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet | null;
     user?: string | null;
+    cin_provenance?: string | null;
 }
 

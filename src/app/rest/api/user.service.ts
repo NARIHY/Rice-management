@@ -17,12 +17,6 @@ import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 // @ts-ignore
-import { ApiMeGetCollection200Response } from '../model/apiMeGetCollection200Response';
-// @ts-ignore
-import { UserJsonldReadUser } from '../model/userJsonldReadUser';
-// @ts-ignore
-import { UserJsonldWritteUser } from '../model/userJsonldWritteUser';
-// @ts-ignore
 import { UserReadUser } from '../model/userReadUser';
 // @ts-ignore
 import { UserWritteUser } from '../model/userWritteUser';
@@ -105,10 +99,10 @@ export class UserService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiMeGetCollection(page?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<ApiMeGetCollection200Response>;
-    public apiMeGetCollection(page?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpResponse<ApiMeGetCollection200Response>>;
-    public apiMeGetCollection(page?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpEvent<ApiMeGetCollection200Response>>;
-    public apiMeGetCollection(page?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<any> {
+    public apiMeGetCollection(page?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<UserReadUser>>;
+    public apiMeGetCollection(page?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<UserReadUser>>>;
+    public apiMeGetCollection(page?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<UserReadUser>>>;
+    public apiMeGetCollection(page?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         if (page !== undefined && page !== null) {
@@ -129,9 +123,7 @@ export class UserService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/ld+json',
-                'application/json',
-                'text/html'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -157,7 +149,7 @@ export class UserService {
         }
 
         let localVarPath = `/api/me`;
-        return this.httpClient.request<ApiMeGetCollection200Response>('get', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<Array<UserReadUser>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,
@@ -177,10 +169,10 @@ export class UserService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiUsersGetCollection(page?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<ApiMeGetCollection200Response>;
-    public apiUsersGetCollection(page?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpResponse<ApiMeGetCollection200Response>>;
-    public apiUsersGetCollection(page?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpEvent<ApiMeGetCollection200Response>>;
-    public apiUsersGetCollection(page?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<any> {
+    public apiUsersGetCollection(page?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<UserReadUser>>;
+    public apiUsersGetCollection(page?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<UserReadUser>>>;
+    public apiUsersGetCollection(page?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<UserReadUser>>>;
+    public apiUsersGetCollection(page?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         if (page !== undefined && page !== null) {
@@ -201,9 +193,7 @@ export class UserService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/ld+json',
-                'application/json',
-                'text/html'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -229,7 +219,7 @@ export class UserService {
         }
 
         let localVarPath = `/api/users`;
-        return this.httpClient.request<ApiMeGetCollection200Response>('get', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<Array<UserReadUser>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,
@@ -249,10 +239,10 @@ export class UserService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiUsersIdGet(id: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<UserJsonldReadUser>;
-    public apiUsersIdGet(id: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpResponse<UserJsonldReadUser>>;
-    public apiUsersIdGet(id: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpEvent<UserJsonldReadUser>>;
-    public apiUsersIdGet(id: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<any> {
+    public apiUsersIdGet(id: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<UserReadUser>;
+    public apiUsersIdGet(id: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<UserReadUser>>;
+    public apiUsersIdGet(id: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<UserReadUser>>;
+    public apiUsersIdGet(id: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling apiUsersIdGet.');
         }
@@ -270,9 +260,7 @@ export class UserService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/ld+json',
-                'application/json',
-                'text/html'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -298,7 +286,7 @@ export class UserService {
         }
 
         let localVarPath = `/api/users/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<UserJsonldReadUser>('get', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<UserReadUser>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -314,19 +302,19 @@ export class UserService {
      * Replaces the User resource.
      * Replaces the User resource.
      * @param id User identifier
-     * @param userJsonldWritteUser The updated User resource
+     * @param userWritteUser The updated User resource
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiUsersIdPut(id: string, userJsonldWritteUser: UserJsonldWritteUser, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<UserJsonldReadUser>;
-    public apiUsersIdPut(id: string, userJsonldWritteUser: UserJsonldWritteUser, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpResponse<UserJsonldReadUser>>;
-    public apiUsersIdPut(id: string, userJsonldWritteUser: UserJsonldWritteUser, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpEvent<UserJsonldReadUser>>;
-    public apiUsersIdPut(id: string, userJsonldWritteUser: UserJsonldWritteUser, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<any> {
+    public apiUsersIdPut(id: string, userWritteUser: UserWritteUser, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<UserReadUser>;
+    public apiUsersIdPut(id: string, userWritteUser: UserWritteUser, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<UserReadUser>>;
+    public apiUsersIdPut(id: string, userWritteUser: UserWritteUser, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<UserReadUser>>;
+    public apiUsersIdPut(id: string, userWritteUser: UserWritteUser, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling apiUsersIdPut.');
         }
-        if (userJsonldWritteUser === null || userJsonldWritteUser === undefined) {
-            throw new Error('Required parameter userJsonldWritteUser was null or undefined when calling apiUsersIdPut.');
+        if (userWritteUser === null || userWritteUser === undefined) {
+            throw new Error('Required parameter userWritteUser was null or undefined when calling apiUsersIdPut.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -342,9 +330,7 @@ export class UserService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/ld+json',
-                'application/json',
-                'text/html'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -360,9 +346,7 @@ export class UserService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
-            'application/ld+json',
-            'application/json',
-            'text/html'
+            'application/json'
         ];
         const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected !== undefined) {
@@ -381,10 +365,10 @@ export class UserService {
         }
 
         let localVarPath = `/api/users/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<UserJsonldReadUser>('put', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<UserReadUser>('put', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                body: userJsonldWritteUser,
+                body: userWritteUser,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,

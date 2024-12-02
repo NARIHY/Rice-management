@@ -17,8 +17,6 @@ import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 // @ts-ignore
-import { ApiBagsGetCollection200Response } from '../model/apiBagsGetCollection200Response';
-// @ts-ignore
 import { BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost } from '../model/bagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost';
 // @ts-ignore
 import { BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte } from '../model/bagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte';
@@ -26,12 +24,6 @@ import { BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollecti
 import { BagBagCollectionPost } from '../model/bagBagCollectionPost';
 // @ts-ignore
 import { BagBagCollectionPostBagArrivalCollection } from '../model/bagBagCollectionPostBagArrivalCollection';
-// @ts-ignore
-import { BagJsonldBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost } from '../model/bagJsonldBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost';
-// @ts-ignore
-import { BagJsonldBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte } from '../model/bagJsonldBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte';
-// @ts-ignore
-import { BagJsonldBagCollectionPost } from '../model/bagJsonldBagCollectionPost';
 
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -111,10 +103,10 @@ export class BagService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiBagsGetCollection(page?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<ApiBagsGetCollection200Response>;
-    public apiBagsGetCollection(page?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpResponse<ApiBagsGetCollection200Response>>;
-    public apiBagsGetCollection(page?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpEvent<ApiBagsGetCollection200Response>>;
-    public apiBagsGetCollection(page?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<any> {
+    public apiBagsGetCollection(page?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte>>;
+    public apiBagsGetCollection(page?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte>>>;
+    public apiBagsGetCollection(page?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte>>>;
+    public apiBagsGetCollection(page?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         if (page !== undefined && page !== null) {
@@ -135,9 +127,7 @@ export class BagService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/ld+json',
-                'application/json',
-                'text/html'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -163,7 +153,7 @@ export class BagService {
         }
 
         let localVarPath = `/api/bags`;
-        return this.httpClient.request<ApiBagsGetCollection200Response>('get', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<Array<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,
@@ -183,10 +173,10 @@ export class BagService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiBagsIdGet(id: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<BagJsonldBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte>;
-    public apiBagsIdGet(id: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpResponse<BagJsonldBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte>>;
-    public apiBagsIdGet(id: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpEvent<BagJsonldBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte>>;
-    public apiBagsIdGet(id: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<any> {
+    public apiBagsIdGet(id: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte>;
+    public apiBagsIdGet(id: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte>>;
+    public apiBagsIdGet(id: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte>>;
+    public apiBagsIdGet(id: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling apiBagsIdGet.');
         }
@@ -204,9 +194,7 @@ export class BagService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/ld+json',
-                'application/json',
-                'text/html'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -232,7 +220,7 @@ export class BagService {
         }
 
         let localVarPath = `/api/bags/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<BagJsonldBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte>('get', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -252,10 +240,10 @@ export class BagService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiBagsIdPatch(id: string, bagBagCollectionPostBagArrivalCollection: BagBagCollectionPostBagArrivalCollection, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<BagJsonldBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>;
-    public apiBagsIdPatch(id: string, bagBagCollectionPostBagArrivalCollection: BagBagCollectionPostBagArrivalCollection, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpResponse<BagJsonldBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>>;
-    public apiBagsIdPatch(id: string, bagBagCollectionPostBagArrivalCollection: BagBagCollectionPostBagArrivalCollection, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpEvent<BagJsonldBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>>;
-    public apiBagsIdPatch(id: string, bagBagCollectionPostBagArrivalCollection: BagBagCollectionPostBagArrivalCollection, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<any> {
+    public apiBagsIdPatch(id: string, bagBagCollectionPostBagArrivalCollection: BagBagCollectionPostBagArrivalCollection, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>;
+    public apiBagsIdPatch(id: string, bagBagCollectionPostBagArrivalCollection: BagBagCollectionPostBagArrivalCollection, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>>;
+    public apiBagsIdPatch(id: string, bagBagCollectionPostBagArrivalCollection: BagBagCollectionPostBagArrivalCollection, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>>;
+    public apiBagsIdPatch(id: string, bagBagCollectionPostBagArrivalCollection: BagBagCollectionPostBagArrivalCollection, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling apiBagsIdPatch.');
         }
@@ -276,9 +264,7 @@ export class BagService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/ld+json',
-                'application/json',
-                'text/html'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -313,7 +299,7 @@ export class BagService {
         }
 
         let localVarPath = `/api/bags/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<BagJsonldBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>('patch', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>('patch', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 body: bagBagCollectionPostBagArrivalCollection,
@@ -329,16 +315,16 @@ export class BagService {
     /**
      * Creates a Bag resource.
      * Creates a Bag resource.
-     * @param bagJsonldBagCollectionPost The new Bag resource
+     * @param bagBagCollectionPost The new Bag resource
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiBagsPost(bagJsonldBagCollectionPost: BagJsonldBagCollectionPost, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<BagJsonldBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>;
-    public apiBagsPost(bagJsonldBagCollectionPost: BagJsonldBagCollectionPost, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpResponse<BagJsonldBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>>;
-    public apiBagsPost(bagJsonldBagCollectionPost: BagJsonldBagCollectionPost, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpEvent<BagJsonldBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>>;
-    public apiBagsPost(bagJsonldBagCollectionPost: BagJsonldBagCollectionPost, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<any> {
-        if (bagJsonldBagCollectionPost === null || bagJsonldBagCollectionPost === undefined) {
-            throw new Error('Required parameter bagJsonldBagCollectionPost was null or undefined when calling apiBagsPost.');
+    public apiBagsPost(bagBagCollectionPost: BagBagCollectionPost, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>;
+    public apiBagsPost(bagBagCollectionPost: BagBagCollectionPost, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>>;
+    public apiBagsPost(bagBagCollectionPost: BagBagCollectionPost, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>>;
+    public apiBagsPost(bagBagCollectionPost: BagBagCollectionPost, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+        if (bagBagCollectionPost === null || bagBagCollectionPost === undefined) {
+            throw new Error('Required parameter bagBagCollectionPost was null or undefined when calling apiBagsPost.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -354,9 +340,7 @@ export class BagService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/ld+json',
-                'application/json',
-                'text/html'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -372,9 +356,7 @@ export class BagService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
-            'application/ld+json',
-            'application/json',
-            'text/html'
+            'application/json'
         ];
         const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected !== undefined) {
@@ -393,10 +375,10 @@ export class BagService {
         }
 
         let localVarPath = `/api/bags`;
-        return this.httpClient.request<BagJsonldBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>('post', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                body: bagJsonldBagCollectionPost,
+                body: bagBagCollectionPost,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,

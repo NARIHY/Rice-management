@@ -17,8 +17,6 @@ import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 // @ts-ignore
-import { ApiRolesGetCollection200Response } from '../model/apiRolesGetCollection200Response';
-// @ts-ignore
 import { TypeCompteTypeCompteCollectionGet } from '../model/typeCompteTypeCompteCollectionGet';
 
 // @ts-ignore
@@ -99,10 +97,10 @@ export class TypeCompteService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiRolesGetCollection(page?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<ApiRolesGetCollection200Response>;
-    public apiRolesGetCollection(page?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpResponse<ApiRolesGetCollection200Response>>;
-    public apiRolesGetCollection(page?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpEvent<ApiRolesGetCollection200Response>>;
-    public apiRolesGetCollection(page?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<any> {
+    public apiRolesGetCollection(page?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<TypeCompteTypeCompteCollectionGet>>;
+    public apiRolesGetCollection(page?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<TypeCompteTypeCompteCollectionGet>>>;
+    public apiRolesGetCollection(page?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<TypeCompteTypeCompteCollectionGet>>>;
+    public apiRolesGetCollection(page?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         if (page !== undefined && page !== null) {
@@ -123,9 +121,7 @@ export class TypeCompteService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/ld+json',
-                'application/json',
-                'text/html'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -151,7 +147,7 @@ export class TypeCompteService {
         }
 
         let localVarPath = `/api/roles`;
-        return this.httpClient.request<ApiRolesGetCollection200Response>('get', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<Array<TypeCompteTypeCompteCollectionGet>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,

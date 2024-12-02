@@ -12,14 +12,8 @@
 /**
  * 
  */
-export interface StockJsonld { 
-    readonly '@id'?: string;
-    readonly '@type'?: string;
+export interface GenderManagementClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGetCinCollectionPostCinCollectionGet { 
     readonly id?: number;
-    aivalableQuantity?: string;
-    createdAt?: string | null;
-    updatedAt?: string | null;
-    bags?: Array<string>;
-    bag?: Array<string>;
+    genderName?: string;
 }
 

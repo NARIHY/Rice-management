@@ -12,12 +12,11 @@
 /**
  * Gestion des clients de notre application
  */
-export interface ClientClientCollectionPostClientCollectionPut { 
+export interface ClientClientCollectionPostClientCollectionPutCinCollectionPost { 
     name: string;
     lastName: string;
     cin: string;
     address: string;
     gender?: string | null;
-    user?: string | null;
 }
 

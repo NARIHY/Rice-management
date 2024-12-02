@@ -12,9 +12,10 @@
 /**
  * 
  */
-export interface TypeCompteJsonldTypeCompteCollectionGet { 
-    readonly '@id'?: string;
-    readonly '@type'?: string;
-    role?: string;
+export interface ContactContactCollectionPost { 
+    name?: string;
+    lastName?: string;
+    email?: string | null;
+    phoneNumber?: string | null;
 }
 

@@ -12,11 +12,12 @@
 /**
  * 
  */
-export interface ArrivalJsonldArrivalCollectionPostStatusCollectionPost { 
-    labelName?: string;
-    arrivalDate?: string;
-    status?: string;
-    bagPrice?: number;
-    bag?: string;
+export interface ContactContactCollectionGetContactCollectionPost { 
+    readonly id?: number;
+    name?: string;
+    lastName?: string;
+    email?: string | null;
+    phoneNumber?: string | null;
+    creationDate?: string;
 }
 

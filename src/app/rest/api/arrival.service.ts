@@ -17,15 +17,9 @@ import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 // @ts-ignore
-import { ApiArrivalsGetCollection200Response } from '../model/apiArrivalsGetCollection200Response';
-// @ts-ignore
 import { ArrivalArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost } from '../model/arrivalArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost';
 // @ts-ignore
 import { ArrivalArrivalCollectionPostStatusCollectionPost } from '../model/arrivalArrivalCollectionPostStatusCollectionPost';
-// @ts-ignore
-import { ArrivalJsonldArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost } from '../model/arrivalJsonldArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost';
-// @ts-ignore
-import { ArrivalJsonldArrivalCollectionPostStatusCollectionPost } from '../model/arrivalJsonldArrivalCollectionPostStatusCollectionPost';
 
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -105,10 +99,10 @@ export class ArrivalService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiArrivalsGetCollection(page?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<ApiArrivalsGetCollection200Response>;
-    public apiArrivalsGetCollection(page?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpResponse<ApiArrivalsGetCollection200Response>>;
-    public apiArrivalsGetCollection(page?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpEvent<ApiArrivalsGetCollection200Response>>;
-    public apiArrivalsGetCollection(page?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<any> {
+    public apiArrivalsGetCollection(page?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<ArrivalArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>>;
+    public apiArrivalsGetCollection(page?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<ArrivalArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>>>;
+    public apiArrivalsGetCollection(page?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<ArrivalArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>>>;
+    public apiArrivalsGetCollection(page?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         if (page !== undefined && page !== null) {
@@ -129,9 +123,7 @@ export class ArrivalService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/ld+json',
-                'application/json',
-                'text/html'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -157,7 +149,7 @@ export class ArrivalService {
         }
 
         let localVarPath = `/api/arrivals`;
-        return this.httpClient.request<ApiArrivalsGetCollection200Response>('get', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<Array<ArrivalArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,
@@ -177,10 +169,10 @@ export class ArrivalService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiArrivalsIdGet(id: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<ArrivalJsonldArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>;
-    public apiArrivalsIdGet(id: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpResponse<ArrivalJsonldArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>>;
-    public apiArrivalsIdGet(id: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpEvent<ArrivalJsonldArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>>;
-    public apiArrivalsIdGet(id: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<any> {
+    public apiArrivalsIdGet(id: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<ArrivalArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>;
+    public apiArrivalsIdGet(id: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<ArrivalArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>>;
+    public apiArrivalsIdGet(id: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<ArrivalArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>>;
+    public apiArrivalsIdGet(id: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling apiArrivalsIdGet.');
         }
@@ -198,9 +190,7 @@ export class ArrivalService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/ld+json',
-                'application/json',
-                'text/html'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -226,7 +216,7 @@ export class ArrivalService {
         }
 
         let localVarPath = `/api/arrivals/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<ArrivalJsonldArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>('get', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<ArrivalArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -246,10 +236,10 @@ export class ArrivalService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiArrivalsIdPatch(id: string, arrivalArrivalCollectionPostStatusCollectionPost: ArrivalArrivalCollectionPostStatusCollectionPost, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<ArrivalJsonldArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>;
-    public apiArrivalsIdPatch(id: string, arrivalArrivalCollectionPostStatusCollectionPost: ArrivalArrivalCollectionPostStatusCollectionPost, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpResponse<ArrivalJsonldArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>>;
-    public apiArrivalsIdPatch(id: string, arrivalArrivalCollectionPostStatusCollectionPost: ArrivalArrivalCollectionPostStatusCollectionPost, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpEvent<ArrivalJsonldArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>>;
-    public apiArrivalsIdPatch(id: string, arrivalArrivalCollectionPostStatusCollectionPost: ArrivalArrivalCollectionPostStatusCollectionPost, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<any> {
+    public apiArrivalsIdPatch(id: string, arrivalArrivalCollectionPostStatusCollectionPost: ArrivalArrivalCollectionPostStatusCollectionPost, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<ArrivalArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>;
+    public apiArrivalsIdPatch(id: string, arrivalArrivalCollectionPostStatusCollectionPost: ArrivalArrivalCollectionPostStatusCollectionPost, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<ArrivalArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>>;
+    public apiArrivalsIdPatch(id: string, arrivalArrivalCollectionPostStatusCollectionPost: ArrivalArrivalCollectionPostStatusCollectionPost, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<ArrivalArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>>;
+    public apiArrivalsIdPatch(id: string, arrivalArrivalCollectionPostStatusCollectionPost: ArrivalArrivalCollectionPostStatusCollectionPost, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling apiArrivalsIdPatch.');
         }
@@ -270,9 +260,7 @@ export class ArrivalService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/ld+json',
-                'application/json',
-                'text/html'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -307,7 +295,7 @@ export class ArrivalService {
         }
 
         let localVarPath = `/api/arrivals/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<ArrivalJsonldArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>('patch', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<ArrivalArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>('patch', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 body: arrivalArrivalCollectionPostStatusCollectionPost,
@@ -323,16 +311,16 @@ export class ArrivalService {
     /**
      * Creates a Arrival resource.
      * Creates a Arrival resource.
-     * @param arrivalJsonldArrivalCollectionPostStatusCollectionPost The new Arrival resource
+     * @param arrivalArrivalCollectionPostStatusCollectionPost The new Arrival resource
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiArrivalsPost(arrivalJsonldArrivalCollectionPostStatusCollectionPost: ArrivalJsonldArrivalCollectionPostStatusCollectionPost, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<ArrivalJsonldArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>;
-    public apiArrivalsPost(arrivalJsonldArrivalCollectionPostStatusCollectionPost: ArrivalJsonldArrivalCollectionPostStatusCollectionPost, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpResponse<ArrivalJsonldArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>>;
-    public apiArrivalsPost(arrivalJsonldArrivalCollectionPostStatusCollectionPost: ArrivalJsonldArrivalCollectionPostStatusCollectionPost, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<HttpEvent<ArrivalJsonldArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>>;
-    public apiArrivalsPost(arrivalJsonldArrivalCollectionPostStatusCollectionPost: ArrivalJsonldArrivalCollectionPostStatusCollectionPost, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html', context?: HttpContext}): Observable<any> {
-        if (arrivalJsonldArrivalCollectionPostStatusCollectionPost === null || arrivalJsonldArrivalCollectionPostStatusCollectionPost === undefined) {
-            throw new Error('Required parameter arrivalJsonldArrivalCollectionPostStatusCollectionPost was null or undefined when calling apiArrivalsPost.');
+    public apiArrivalsPost(arrivalArrivalCollectionPostStatusCollectionPost: ArrivalArrivalCollectionPostStatusCollectionPost, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<ArrivalArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>;
+    public apiArrivalsPost(arrivalArrivalCollectionPostStatusCollectionPost: ArrivalArrivalCollectionPostStatusCollectionPost, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<ArrivalArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>>;
+    public apiArrivalsPost(arrivalArrivalCollectionPostStatusCollectionPost: ArrivalArrivalCollectionPostStatusCollectionPost, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<ArrivalArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>>;
+    public apiArrivalsPost(arrivalArrivalCollectionPostStatusCollectionPost: ArrivalArrivalCollectionPostStatusCollectionPost, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+        if (arrivalArrivalCollectionPostStatusCollectionPost === null || arrivalArrivalCollectionPostStatusCollectionPost === undefined) {
+            throw new Error('Required parameter arrivalArrivalCollectionPostStatusCollectionPost was null or undefined when calling apiArrivalsPost.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -348,9 +336,7 @@ export class ArrivalService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/ld+json',
-                'application/json',
-                'text/html'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -366,9 +352,7 @@ export class ArrivalService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
-            'application/ld+json',
-            'application/json',
-            'text/html'
+            'application/json'
         ];
         const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected !== undefined) {
@@ -387,10 +371,10 @@ export class ArrivalService {
         }
 
         let localVarPath = `/api/arrivals`;
-        return this.httpClient.request<ArrivalJsonldArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>('post', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<ArrivalArrivalCollectionGetArrivalCollectionPostStatusesCollectionGetStatusesCollectionPostBagCollectionGetBagCollectionPost>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                body: arrivalJsonldArrivalCollectionPostStatusCollectionPost,
+                body: arrivalArrivalCollectionPostStatusCollectionPost,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,

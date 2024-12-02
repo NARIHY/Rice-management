@@ -17,7 +17,7 @@ import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 // @ts-ignore
-import { HistoriqueTemp } from '../model/historiqueTemp';
+import { CinCinCollectionGet } from '../model/cinCinCollectionGet';
 
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -28,7 +28,7 @@ import { Configuration }                                     from '../configurat
 @Injectable({
   providedIn: 'root'
 })
-export class HistoriqueTempService {
+export class CinService {
 
     protected basePath = 'http://localhost:8000';
     public defaultHeaders = new HttpHeaders();
@@ -91,16 +91,16 @@ export class HistoriqueTempService {
     }
 
     /**
-     * Retrieves the collection of HistoriqueTemp resources.
-     * Retrieves the collection of HistoriqueTemp resources.
+     * Retrieves the collection of Cin resources.
+     * Retrieves the collection of Cin resources.
      * @param page The collection page number
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiHistorytempGetCollection(page?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<HistoriqueTemp>>;
-    public apiHistorytempGetCollection(page?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<HistoriqueTemp>>>;
-    public apiHistorytempGetCollection(page?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<HistoriqueTemp>>>;
-    public apiHistorytempGetCollection(page?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public apiCinGetCollection(page?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<CinCinCollectionGet>>;
+    public apiCinGetCollection(page?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<CinCinCollectionGet>>>;
+    public apiCinGetCollection(page?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<CinCinCollectionGet>>>;
+    public apiCinGetCollection(page?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         if (page !== undefined && page !== null) {
@@ -146,8 +146,8 @@ export class HistoriqueTempService {
             }
         }
 
-        let localVarPath = `/api/History/temp`;
-        return this.httpClient.request<Array<HistoriqueTemp>>('get', `${this.configuration.basePath}${localVarPath}`,
+        let localVarPath = `/api/cin`;
+        return this.httpClient.request<Array<CinCinCollectionGet>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,
