@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ApiMeGetCollection200Response, ClientClientCollectionPostClientCollectionPut, ClientJsonldClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet, UserService } from 'src/app/rest';
 import { ClientService } from '../../rest/api/client.service';
 import { GenderManagementService } from '../../rest/api/genderManagement.service';
-import { ApiGendersGetCollection200Response } from '../../rest/model/apiGendersGetCollection200Response';
-import { GenderManagementJsonldGenderCollectionGet } from '../../rest/model/genderManagementJsonldGenderCollectionGet';
 import { ClientModificationComponent } from './client-modification/client-modification.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet, GenderManagementGenderCollectionGet, UserReadUser, UserService } from 'src/app/rest';
 
 
 
@@ -16,10 +14,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./client-profile.component.css']
 })
 export class ClientProfileComponent implements OnInit {
-  user: ApiMeGetCollection200Response | null = null;
+  user: UserReadUser | null = null;
   isLoading: boolean = false;
-  genders: ApiGendersGetCollection200Response[] = []; // Tableau pour stocker les genres
-  allMembers: GenderManagementJsonldGenderCollectionGet[] = [];
+  genders: GenderManagementGenderCollectionGet[] = []; // Tableau pour stocker les genres
   clientForm: FormGroup;
   cinFields: number[] = new Array(12).fill(0); // Tableau pour les 12 chiffres du CIN
   cinFieldsInvalid: boolean = false;
@@ -34,7 +31,7 @@ export class ClientProfileComponent implements OnInit {
   // Id of client
   cllId: string = "";
   // Client
-  client?: ClientJsonldClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet;
+  client?: ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet;
   constructor(
     private userService: UserService,
     private fb: FormBuilder,
@@ -66,7 +63,7 @@ export class ClientProfileComponent implements OnInit {
   ngOnInit(): void {
     this.getUserData();
     this.loadGenders();
-    this.getClientSaved();
+    // this.getClientSaved();
   }
 
   // Fonction pour gérer le changement d'entrée et déplacer le focus
@@ -97,19 +94,20 @@ export class ClientProfileComponent implements OnInit {
   getUserData() {
     this.loader(); // Démarre le loader avant de faire l'appel
     this.userService.apiMeGetCollection().subscribe(
-      (response: ApiMeGetCollection200Response) => {
-        this.user = response;
-        this.getClientSaved();
+      (response: Array<UserReadUser>) => {
+        this.user = response[0];
+        // this.getClientSaved();
         this.isLoading = false; // Arrête le loader après réception des données
       }
     );
 
 
   }
+  // Bug here
 
   // Vérifie si l'utilisateur est un nouveau client
   isNewClient(): boolean {
-    if(this.user?.client) {
+    if(this.user) {
       return false;
     }
     return true;
@@ -161,15 +159,9 @@ export class ClientProfileComponent implements OnInit {
   loadGenders(): void {
     this.isLoading = true;
     this.genderManagementService.apiGendersGetCollection().subscribe(
-      (response: ApiGendersGetCollection200Response) => {
-        // Si la réponse est un tableau, on peut simplement assigner
-        if (Array.isArray(response)) {
-          this.genders = response;
-        } else {
-          this.genders.push(response);
-        }
+      (response: Array<GenderManagementGenderCollectionGet>) => {
+        this.genders = response;
         this.isLoading = false;
-        // this.getAllMembers(); // Récupère tous les membres
       }
     );
   }
@@ -178,24 +170,24 @@ export class ClientProfileComponent implements OnInit {
     return this.user?.roles ? Object.values(this.user.roles) : [];
   }
 
+  // Bug here
+  // getClientSaved() {
 
-  getClientSaved() {
-
-    if (typeof this.user?.client === 'string') {
-      const clientId = this.getClientId(this.user?.client);
-      // Vérifier si clientId est valide avant de faire l'appel
-      if (clientId) {
-        this.clientService.apiClientsIdGet(clientId).subscribe(
-          (response) => {
-            console.log(response.name)
-            this.client = response;
-            this.cllId = clientId;
-          }
-        );
-        console.log(this.client);
-      }
-    }
-  }
+  //   if (typeof this.user?.client === 'string') {
+  //     const clientId = this.getClientId(this.user?.client);
+  //     // Vérifier si clientId est valide avant de faire l'appel
+  //     if (clientId) {
+  //       this.clientService.apiClientsIdGet(clientId).subscribe(
+  //         (response) => {
+  //           console.log(response.name)
+  //           this.client = response;
+  //           this.cllId = clientId;
+  //         }
+  //       );
+  //       console.log(this.client);
+  //     }
+  //   }
+  // }
 
    // Ouvrir le modal pour la modification du client
    openClientModificationModal() {
