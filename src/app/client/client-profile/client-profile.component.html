@@ -106,13 +106,14 @@
                               <p ><strong>Prénom:</strong> {{ client?.lastName! | capitalizeFirstLetter }}</p>
                               <p><strong>CIN:</strong> {{ client?.cin }} </p>
                               <p><strong>Adresse:</strong> {{client?.address}} </p>
-                              <p><strong>Zone de provenance:</strong> {{ client?.cin_provenance?.zone }} </p>
+                              <p><strong>Zone de provenance:</strong> {{ client?.cin_provenance?.locationZone }} </p>
                               <!-- <p><strong>Région:</strong> {{client[0].}} </p> -->
-                              <p><strong>Province:</strong>  {{ client?.cin_provenance?.province }} </p>
-                              <p><strong>Pays:</strong> MADAGASCAR </p>
-                              <p><strong>Code postal:</strong> {{ client?.cin_provenance?.postal_code }} </p>
+                              <p><strong>Région:</strong>  {{ client?.cin_provenance?.locationRegion }} </p>
+                              <p><strong>Province: </strong> {{ client?.cin_provenance?.locationProvince }} </p>
+                              <p><strong>Pays:</strong> {{ client?.cin_provenance?.country }} </p>
+                              <p><strong>Code postal:</strong> 123 </p>
                               <p><strong>Genre:</strong> {{ client?.gender?.genderName }} </p>
-                              <p><strong>Identifiant de l'utilisateur:</strong> {{user.userIdentifier}} </p>
+                              <p><strong>Identifiant de l'utilisateur:</strong> {{user.email}} </p>
                             </div>
                             <div class="col-md-6">
                               <p><strong>Date de création:</strong> {{ user.createdAt | date: 'dd MMMM yyyy, HH:mm' }}</p>

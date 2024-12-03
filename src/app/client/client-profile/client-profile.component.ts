@@ -62,8 +62,10 @@ export class ClientProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserData();
+    console.log(this.getUserData());
     this.loadGenders();
     this.getClientSaved();
+    console.log(this.user?.client)
   }
 
   // Fonction pour gérer le changement d'entrée et déplacer le focus
@@ -95,7 +97,9 @@ export class ClientProfileComponent implements OnInit {
     this.loader(); // Démarre le loader avant de faire l'appel
     this.userService.getUserConnected().subscribe(
       (response: Array<UserReadUser>) => {
+        console.log("tes" + response[0])
         this.user = response[0];
+        console.log(this.user)
         this.getClientSaved();
         this.isLoading = false; // Arrête le loader après réception des données
       }
@@ -106,9 +110,9 @@ export class ClientProfileComponent implements OnInit {
 
   // Vérifie si l'utilisateur est un nouveau client
   isNewClient(): boolean {
-    if(!this.user?.client) {
-      return false;
-    }
+    // if(this.user?.client !== null) {
+    //   return false;
+    // }
     return true;
   }
 
@@ -197,15 +201,7 @@ export class ClientProfileComponent implements OnInit {
     modalRef.componentInstance.clientId = this.cllId;
   }
 
-  // Récupération des membres associés aux genres
-  // private getAllMembers(): void {
-  //   this.allMembers = []; // Réinitialise la liste des membres
-  //   this.genders.forEach(gender => {
-  //     if (gender.member && Array.isArray(gender.member)) {
-  //       this.allMembers = [...this.allMembers, ...gender.member];
-  //     }
-  //   });
-  // }
+
 
   // Fonction pour assembler les chiffres du CIN en une chaîne formatée "xxx xxx xxx xxx"
   private formatCin(cinValues: string): string {

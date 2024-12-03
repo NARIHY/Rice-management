@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ClientJsonldClientCollectionPut, ClientService } from 'src/app/rest';
-import { Client } from 'src/app/rest/model/client';
+import {  ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGetCinCollectionPostCinCollectionGet, ClientClientCollectionPut, ClientService } from 'src/app/rest';
+
 
 @Component({
   selector: 'app-client-modification',
@@ -10,7 +10,7 @@ import { Client } from 'src/app/rest/model/client';
   styleUrls: ['./client-modification.component.css']
 })
 export class ClientModificationComponent {
-  @Input() client: Client | null; // Injection des données du client
+  @Input() client: ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGetCinCollectionPostCinCollectionGet | null; // Injection des données du client
   @Input() clientId: string = "";
   clientForm: FormGroup;
 
@@ -44,11 +44,11 @@ export class ClientModificationComponent {
         console.log(this.client)
         console.log(this.clientId)
         // Créer un objet de mise à jour à partir des données du formulaire
-        const updatedClient: ClientJsonldClientCollectionPut = {
+        const updatedClient: ClientClientCollectionPut = {
           address: this.clientForm.value.address,
         };
 
-        this.clientService.apiClientsIdPut(this.clientId, updatedClient).subscribe(
+        this.clientService.updateClient(this.clientId, updatedClient).subscribe(
           response => {
             this.modalService.dismissAll()
           }
@@ -57,7 +57,7 @@ export class ClientModificationComponent {
     }
   }
 
-  private loadClientData(): Client | null {
+  private loadClientData(): ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGetCinCollectionPostCinCollectionGet | null {
     return null;
   }
 
