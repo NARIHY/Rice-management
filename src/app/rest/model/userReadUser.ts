@@ -13,11 +13,14 @@
  * 
  */
 export interface UserReadUser { 
+    readonly id?: number;
     email?: string;
     /**
      * The user roles
      */
     roles?: Array<string>;
     createdAt?: string | null;
+    updatedAt?: string | null;
+    client?: string | null;
 }
 

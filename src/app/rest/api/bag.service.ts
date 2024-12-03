@@ -97,16 +97,82 @@ export class BagService {
     }
 
     /**
+     * Retrieves a Bag resource.
+     * Retrieves a Bag resource.
+     * @param id Bag identifier
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getBag(id: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte>;
+    public getBag(id: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte>>;
+    public getBag(id: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte>>;
+    public getBag(id: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling getBag.');
+        }
+
+        let localVarHeaders = this.defaultHeaders;
+
+        let localVarCredential: string | undefined;
+        // authentication (JWT) required
+        localVarCredential = this.configuration.lookupCredential('JWT');
+        if (localVarCredential) {
+            localVarHeaders = localVarHeaders.set('Authorization', 'Bearer ' + localVarCredential);
+        }
+
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json'
+            ];
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
+        }
+
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        let localVarPath = `/api/bags/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
+        return this.httpClient.request<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte>('get', `${this.configuration.basePath}${localVarPath}`,
+            {
+                context: localVarHttpContext,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Retrieves the collection of Bag resources.
      * Retrieves the collection of Bag resources.
      * @param page The collection page number
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiBagsGetCollection(page?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte>>;
-    public apiBagsGetCollection(page?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte>>>;
-    public apiBagsGetCollection(page?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte>>>;
-    public apiBagsGetCollection(page?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public getBagCollection(page?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte>>;
+    public getBagCollection(page?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte>>>;
+    public getBagCollection(page?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte>>>;
+    public getBagCollection(page?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         if (page !== undefined && page !== null) {
@@ -167,164 +233,18 @@ export class BagService {
     }
 
     /**
-     * Retrieves a Bag resource.
-     * Retrieves a Bag resource.
-     * @param id Bag identifier
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public apiBagsIdGet(id: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte>;
-    public apiBagsIdGet(id: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte>>;
-    public apiBagsIdGet(id: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte>>;
-    public apiBagsIdGet(id: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling apiBagsIdGet.');
-        }
-
-        let localVarHeaders = this.defaultHeaders;
-
-        let localVarCredential: string | undefined;
-        // authentication (JWT) required
-        localVarCredential = this.configuration.lookupCredential('JWT');
-        if (localVarCredential) {
-            localVarHeaders = localVarHeaders.set('Authorization', 'Bearer ' + localVarCredential);
-        }
-
-        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (localVarHttpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json'
-            ];
-            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (localVarHttpHeaderAcceptSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
-        }
-
-        let localVarHttpContext: HttpContext | undefined = options && options.context;
-        if (localVarHttpContext === undefined) {
-            localVarHttpContext = new HttpContext();
-        }
-
-
-        let responseType_: 'text' | 'json' | 'blob' = 'json';
-        if (localVarHttpHeaderAcceptSelected) {
-            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
-                responseType_ = 'text';
-            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
-                responseType_ = 'json';
-            } else {
-                responseType_ = 'blob';
-            }
-        }
-
-        let localVarPath = `/api/bags/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPostStockBagCollectionStockCollectionReadStockCollectionWritte>('get', `${this.configuration.basePath}${localVarPath}`,
-            {
-                context: localVarHttpContext,
-                responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
-                headers: localVarHeaders,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Updates the Bag resource.
-     * Updates the Bag resource.
-     * @param id Bag identifier
-     * @param bagBagCollectionPostBagArrivalCollection The updated Bag resource
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public apiBagsIdPatch(id: string, bagBagCollectionPostBagArrivalCollection: BagBagCollectionPostBagArrivalCollection, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>;
-    public apiBagsIdPatch(id: string, bagBagCollectionPostBagArrivalCollection: BagBagCollectionPostBagArrivalCollection, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>>;
-    public apiBagsIdPatch(id: string, bagBagCollectionPostBagArrivalCollection: BagBagCollectionPostBagArrivalCollection, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>>;
-    public apiBagsIdPatch(id: string, bagBagCollectionPostBagArrivalCollection: BagBagCollectionPostBagArrivalCollection, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling apiBagsIdPatch.');
-        }
-        if (bagBagCollectionPostBagArrivalCollection === null || bagBagCollectionPostBagArrivalCollection === undefined) {
-            throw new Error('Required parameter bagBagCollectionPostBagArrivalCollection was null or undefined when calling apiBagsIdPatch.');
-        }
-
-        let localVarHeaders = this.defaultHeaders;
-
-        let localVarCredential: string | undefined;
-        // authentication (JWT) required
-        localVarCredential = this.configuration.lookupCredential('JWT');
-        if (localVarCredential) {
-            localVarHeaders = localVarHeaders.set('Authorization', 'Bearer ' + localVarCredential);
-        }
-
-        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (localVarHttpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json'
-            ];
-            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (localVarHttpHeaderAcceptSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
-        }
-
-        let localVarHttpContext: HttpContext | undefined = options && options.context;
-        if (localVarHttpContext === undefined) {
-            localVarHttpContext = new HttpContext();
-        }
-
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/merge-patch+json'
-        ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
-        }
-
-        let responseType_: 'text' | 'json' | 'blob' = 'json';
-        if (localVarHttpHeaderAcceptSelected) {
-            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
-                responseType_ = 'text';
-            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
-                responseType_ = 'json';
-            } else {
-                responseType_ = 'blob';
-            }
-        }
-
-        let localVarPath = `/api/bags/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>('patch', `${this.configuration.basePath}${localVarPath}`,
-            {
-                context: localVarHttpContext,
-                body: bagBagCollectionPostBagArrivalCollection,
-                responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
-                headers: localVarHeaders,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
      * Creates a Bag resource.
      * Creates a Bag resource.
      * @param bagBagCollectionPost The new Bag resource
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiBagsPost(bagBagCollectionPost: BagBagCollectionPost, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>;
-    public apiBagsPost(bagBagCollectionPost: BagBagCollectionPost, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>>;
-    public apiBagsPost(bagBagCollectionPost: BagBagCollectionPost, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>>;
-    public apiBagsPost(bagBagCollectionPost: BagBagCollectionPost, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public saveBag(bagBagCollectionPost: BagBagCollectionPost, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>;
+    public saveBag(bagBagCollectionPost: BagBagCollectionPost, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>>;
+    public saveBag(bagBagCollectionPost: BagBagCollectionPost, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>>;
+    public saveBag(bagBagCollectionPost: BagBagCollectionPost, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (bagBagCollectionPost === null || bagBagCollectionPost === undefined) {
-            throw new Error('Required parameter bagBagCollectionPost was null or undefined when calling apiBagsPost.');
+            throw new Error('Required parameter bagBagCollectionPost was null or undefined when calling saveBag.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -379,6 +299,86 @@ export class BagService {
             {
                 context: localVarHttpContext,
                 body: bagBagCollectionPost,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Replaces the Bag resource.
+     * Replaces the Bag resource.
+     * @param id Bag identifier
+     * @param bagBagCollectionPostBagArrivalCollection The updated Bag resource
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public updateBag(id: string, bagBagCollectionPostBagArrivalCollection: BagBagCollectionPostBagArrivalCollection, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>;
+    public updateBag(id: string, bagBagCollectionPostBagArrivalCollection: BagBagCollectionPostBagArrivalCollection, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>>;
+    public updateBag(id: string, bagBagCollectionPostBagArrivalCollection: BagBagCollectionPostBagArrivalCollection, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>>;
+    public updateBag(id: string, bagBagCollectionPostBagArrivalCollection: BagBagCollectionPostBagArrivalCollection, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling updateBag.');
+        }
+        if (bagBagCollectionPostBagArrivalCollection === null || bagBagCollectionPostBagArrivalCollection === undefined) {
+            throw new Error('Required parameter bagBagCollectionPostBagArrivalCollection was null or undefined when calling updateBag.');
+        }
+
+        let localVarHeaders = this.defaultHeaders;
+
+        let localVarCredential: string | undefined;
+        // authentication (JWT) required
+        localVarCredential = this.configuration.lookupCredential('JWT');
+        if (localVarCredential) {
+            localVarHeaders = localVarHeaders.set('Authorization', 'Bearer ' + localVarCredential);
+        }
+
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json'
+            ];
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
+        }
+
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
+        }
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        let localVarPath = `/api/bags/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
+        return this.httpClient.request<BagBagCollectionGetBagCollectionPostArrivalCollectionGetArrivalCollectionPost>('put', `${this.configuration.basePath}${localVarPath}`,
+            {
+                context: localVarHttpContext,
+                body: bagBagCollectionPostBagArrivalCollection,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,

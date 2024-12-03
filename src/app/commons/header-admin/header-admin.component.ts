@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { staticTextFR } from '../../text/staticText';
 import { UserService } from '../../rest/api/user.service';
-import { ApiMeGetCollection200Response } from 'src/app/rest';
+import { UserReadUser } from 'src/app/rest';
 
 interface MenuItem {
   label: string;
@@ -22,7 +22,7 @@ export class HeaderAdminComponent implements OnInit {
     { label: 'Accueil du site', path: '/' }
   ];
   dashboardTitle: string = '';
-  user: ApiMeGetCollection200Response | null = null;
+  user: UserReadUser | null = null;
 
   constructor(private userService: UserService) {
 
@@ -35,23 +35,23 @@ export class HeaderAdminComponent implements OnInit {
   }
 
   loadUserData() {
-    this.userService.apiMeGetCollection().subscribe(
-      (response: ApiMeGetCollection200Response) => {
-        this.user = response; // Assurez-vous que response a la bonne structure
+    this.userService.getUserConnected().subscribe(
+      (response: Array<UserReadUser>) => {
+        this.user = response[0];
         // Vérifiez que l'utilisateur est défini et extrait userIdentifier
         if (this.user) {
-          this.userIdentifier = this.user.userIdentifier ?? null; // Accéder à userIdentifier
+          this.userIdentifier = this.user.email ?? null; // Accéder à userIdentifier
         }
       }
     );
   }
 
   extractUsername(): string {
-    if (!this.user || !this.user.userIdentifier) {
+    if (!this.user || !this.user.email) {
       return ''; // Retourne une chaîne vide si user ou userIdentifier est null/undefined
     }
 
-    const userIdentifier = this.user.userIdentifier;
+    const userIdentifier = this.user.email;
     const atIndex = userIdentifier.indexOf('@');
     if (atIndex !== -1) {
       return userIdentifier.substring(0, atIndex);

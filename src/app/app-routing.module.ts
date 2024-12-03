@@ -8,6 +8,7 @@ import { HomeComponent } from './public/home/home.component';
 import { AuthGuard } from './security/auth.guard';
 import { LogoutComponent } from './commons/logout/logout.component';
 import { InformationComponent } from './public/information/information.component';
+import { MenuClientComponent } from './commons/menu-client/menu-client.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -16,6 +17,8 @@ const routes: Routes = [
   { path: 'contact', component: ContactFormComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
+  // A tester
+  {path: 'client-menu', component: MenuClientComponent, outlet: 'menu'},
   { path: 'logout', canActivate: [AuthGuard] ,component: LogoutComponent },
   { path: 'client', canActivate: [AuthGuard], title: 'Rice Management: Client',
     loadChildren: () => import('./client/client.module').then((m) => m.ClientModule)

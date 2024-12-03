@@ -4,7 +4,7 @@ import { ClientService } from '../../rest/api/client.service';
 import { GenderManagementService } from '../../rest/api/genderManagement.service';
 import { ClientModificationComponent } from './client-modification/client-modification.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet, GenderManagementGenderCollectionGet, UserReadUser, UserService } from 'src/app/rest';
+import { ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGetCinCollectionPostCinCollectionGet, GenderManagementGenderCollectionGet, UserReadUser, UserService } from 'src/app/rest';
 
 
 
@@ -31,7 +31,7 @@ export class ClientProfileComponent implements OnInit {
   // Id of client
   cllId: string = "";
   // Client
-  client?: ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGet;
+  client?: ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGetCinCollectionPostCinCollectionGet;
   constructor(
     private userService: UserService,
     private fb: FormBuilder,
@@ -63,7 +63,7 @@ export class ClientProfileComponent implements OnInit {
   ngOnInit(): void {
     this.getUserData();
     this.loadGenders();
-    // this.getClientSaved();
+    this.getClientSaved();
   }
 
   // Fonction pour gérer le changement d'entrée et déplacer le focus
@@ -93,21 +93,20 @@ export class ClientProfileComponent implements OnInit {
   // Récupération des données de l'utilisateur
   getUserData() {
     this.loader(); // Démarre le loader avant de faire l'appel
-    this.userService.apiMeGetCollection().subscribe(
+    this.userService.getUserConnected().subscribe(
       (response: Array<UserReadUser>) => {
         this.user = response[0];
-        // this.getClientSaved();
+        this.getClientSaved();
         this.isLoading = false; // Arrête le loader après réception des données
       }
     );
 
 
   }
-  // Bug here
 
   // Vérifie si l'utilisateur est un nouveau client
   isNewClient(): boolean {
-    if(this.user) {
+    if(!this.user?.client) {
       return false;
     }
     return true;
@@ -126,7 +125,7 @@ export class ClientProfileComponent implements OnInit {
         gender: `api/genders/${this.clientForm.value.gender}`
       };
 
-      this.clientService.apiClientsPost(clientData).subscribe(
+      this.clientService.postClient(clientData).subscribe(
         response => {
           this.showAlert('Succès', 'Le client a été créé avec succès !', 'success');
           this.resetForm();
@@ -170,24 +169,24 @@ export class ClientProfileComponent implements OnInit {
     return this.user?.roles ? Object.values(this.user.roles) : [];
   }
 
-  // Bug here
-  // getClientSaved() {
 
-  //   if (typeof this.user?.client === 'string') {
-  //     const clientId = this.getClientId(this.user?.client);
-  //     // Vérifier si clientId est valide avant de faire l'appel
-  //     if (clientId) {
-  //       this.clientService.apiClientsIdGet(clientId).subscribe(
-  //         (response) => {
-  //           console.log(response.name)
-  //           this.client = response;
-  //           this.cllId = clientId;
-  //         }
-  //       );
-  //       console.log(this.client);
-  //     }
-  //   }
-  // }
+  getClientSaved() {
+
+    if (typeof this.user?.client === 'string') {
+      const clientId = this.getClientId(this.user?.client);
+      // Vérifier si clientId est valide avant de faire l'appel
+      if (clientId) {
+        this.clientService.getClient(clientId).subscribe(
+          (response) => {
+            console.log(response.name)
+            this.client = response;
+            this.cllId = clientId;
+          }
+        );
+        console.log(this.client);
+      }
+    }
+  }
 
    // Ouvrir le modal pour la modification du client
    openClientModificationModal() {
