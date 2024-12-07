@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { staticTextFR } from '../../text/staticText';
-import { UserService } from '../../rest/api/user.service';
 import { UserReadUser } from 'src/app/rest';
+import { UserControllerService } from 'src/app/back-end/api/user.controller.service';
+import { User } from 'src/app/back-end/models/user';
 
 interface MenuItem {
   label: string;
@@ -22,9 +23,9 @@ export class HeaderAdminComponent implements OnInit {
     { label: 'Accueil du site', path: '/' }
   ];
   dashboardTitle: string = '';
-  user: UserReadUser | null = null;
+  user: User | null = null;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserControllerService) {
 
   }
 
@@ -36,8 +37,9 @@ export class HeaderAdminComponent implements OnInit {
 
   loadUserData() {
     this.userService.getUserConnected().subscribe(
-      (response: Array<UserReadUser>) => {
-        this.user = response[0];
+      (response) => {
+        console.log(response)
+        this.user = response;
         // Vérifiez que l'utilisateur est défini et extrait userIdentifier
         if (this.user) {
           this.userIdentifier = this.user.email ?? null; // Accéder à userIdentifier

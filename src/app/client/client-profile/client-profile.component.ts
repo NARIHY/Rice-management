@@ -5,6 +5,8 @@ import { GenderManagementService } from '../../rest/api/genderManagement.service
 import { ClientModificationComponent } from './client-modification/client-modification.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGetCinCollectionPostCinCollectionGet, GenderManagementGenderCollectionGet, UserReadUser, UserService } from 'src/app/rest';
+import { UserControllerService } from 'src/app/back-end/api/user.controller.service';
+import { User } from 'src/app/back-end/models/user';
 
 
 
@@ -14,7 +16,7 @@ import { ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderC
   styleUrls: ['./client-profile.component.css']
 })
 export class ClientProfileComponent implements OnInit {
-  user: UserReadUser | null = null;
+  user: User | null = null;
   isLoading: boolean = false;
   genders: GenderManagementGenderCollectionGet[] = []; // Tableau pour stocker les genres
   clientForm: FormGroup;
@@ -33,7 +35,7 @@ export class ClientProfileComponent implements OnInit {
   // Client
   client?: ClientClientCollectionGetClientCollectionPostClientCollectionPutGenderCollectionGetCinCollectionPostCinCollectionGet;
   constructor(
-    private userService: UserService,
+    private userService: UserControllerService,
     private fb: FormBuilder,
     private clientService: ClientService,
     private genderManagementService: GenderManagementService,
@@ -62,10 +64,8 @@ export class ClientProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserData();
-    console.log(this.getUserData());
     this.loadGenders();
     this.getClientSaved();
-    console.log(this.user?.client)
   }
 
   // Fonction pour gérer le changement d'entrée et déplacer le focus
@@ -96,10 +96,8 @@ export class ClientProfileComponent implements OnInit {
   getUserData() {
     this.loader(); // Démarre le loader avant de faire l'appel
     this.userService.getUserConnected().subscribe(
-      (response: Array<UserReadUser>) => {
-        console.log("tes" + response[0])
-        this.user = response[0];
-        console.log(this.user)
+      (response: User) => {
+        this.user = response;
         this.getClientSaved();
         this.isLoading = false; // Arrête le loader après réception des données
       }
@@ -110,9 +108,9 @@ export class ClientProfileComponent implements OnInit {
 
   // Vérifie si l'utilisateur est un nouveau client
   isNewClient(): boolean {
-    // if(this.user?.client !== null) {
-    //   return false;
-    // }
+    if(this.user?.client !== null) {
+      return false;
+    }
     return true;
   }
 
@@ -187,7 +185,6 @@ export class ClientProfileComponent implements OnInit {
             this.cllId = clientId;
           }
         );
-        console.log(this.client);
       }
     }
   }
