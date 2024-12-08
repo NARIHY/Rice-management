@@ -2,30 +2,43 @@
 <div class="form-wrapper">
   <div class="form-container">
     <h2 class="form-title">Contactez-nous</h2>
-    <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
       <div class="form-field">
-        <input type="text" id="name" name="name" required ngModel placeholder="">
+        <input type="text" id="name"  formControlName="name" placeholder="">
         <label for="name">Nom :</label>
       </div>
 
       <div class="form-field">
-        <input type="email" id="email" name="email" required ngModel placeholder="">
+        <input type="text" id="name" formControlName="lastName" placeholder="">
+        <label for="name">Pénon :</label>
+      </div>
+
+      <div class="form-field">
+        <input type="email" id="email" formControlName="email" placeholder="">
         <label for="email">Email :</label>
       </div>
 
       <div class="form-field">
-        <input type="text" id="subject" name="subject" required ngModel placeholder="">
+        <input type="text" id="subject"   formControlName="subject" placeholder="">
         <label for="subject">Sujet de conversation :</label>
       </div>
 
       <div class="form-field">
-        <textarea id="message" name="message" rows="4" required ngModel placeholder=""></textarea>
+        <textarea id="message"  rows="4" formControlName="message" placeholder=""></textarea>
         <label for="message">Message :</label>
       </div>
 
-      <button type="submit" class="submit-button">Envoyer</button>
+      <button type="submit" [disabled]="contactForm.invalid"   class="submit-button">Envoyer</button>
     </form>
   </div>
 </div>
+
+<!-- Alert for feedback -->
+<ng-container *ngIf="showModal">
+  <div class="alert alert-success alert-dismissible fade show m-4" role="alert">
+    <strong>{{ modalTitle }}</strong> {{ modalMessage }}
+    <button type="button" class="btn-close" (click)="showModal = false" aria-label="Close"></button>
+  </div>
+</ng-container>
 <app-loader *ngIf="isLoading"></app-loader>
 <app-footer></app-footer>

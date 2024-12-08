@@ -3,4 +3,6 @@ export interface ContactPost {
   lastName?: string;
   email?: string | null;
   phoneNumber?: string | null;
+  subject?: string | null;
+  message?: string | null;
 }
