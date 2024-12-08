@@ -5,27 +5,42 @@
     <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
       <div class="form-field">
         <input type="text" id="name"  formControlName="name" placeholder="">
-        <label for="name">Nom :</label>
+        <label for="name">{{ staticText.name}}</label>
+        <div *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched" class="error-message">
+          {{staticText.requiredInputName}}
+        </div>
       </div>
 
       <div class="form-field">
         <input type="text" id="name" formControlName="lastName" placeholder="">
-        <label for="name">Pénon :</label>
+        <label for="name"> {{staticText.lastName}} </label>
+        <div *ngIf="contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched" class="error-message">
+          {{staticText.requiredInputLastName}}
+        </div>
       </div>
 
       <div class="form-field">
         <input type="email" id="email" formControlName="email" placeholder="">
-        <label for="email">Email :</label>
+        <label for="email"> {{staticText.email}} </label>
+        <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" class="error-message">
+          {{staticText.requiredInputEmail}}
+        </div>
       </div>
 
       <div class="form-field">
         <input type="text" id="subject"   formControlName="subject" placeholder="">
-        <label for="subject">Sujet de conversation :</label>
+        <label for="subject"> {{ staticText.subject }} </label>
+        <div *ngIf="contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched" class="error-message">
+          {{staticText.requiredInputSubject}}
+        </div>
       </div>
 
       <div class="form-field">
         <textarea id="message"  rows="4" formControlName="message" placeholder=""></textarea>
-        <label for="message">Message :</label>
+        <label for="message"> {{staticText.message}} </label>
+        <div *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched" class="error-message">
+          {{staticText.requiredInputMessage}}
+        </div>
       </div>
 
       <button type="submit" [disabled]="contactForm.invalid"   class="submit-button">Envoyer</button>

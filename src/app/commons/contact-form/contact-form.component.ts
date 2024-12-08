@@ -5,6 +5,7 @@ import { error } from 'console';
 import { ContactControllerService } from 'src/app/back-end/api/contact.controller.service';
 import { Contact } from 'src/app/back-end/models/contact';
 import { ContactPost } from 'src/app/back-end/models/post/contactPost';
+import { staticTextFR } from 'src/app/text/staticText';
 
 @Component({
   selector: 'app-contact-form',
@@ -19,6 +20,9 @@ export class ContactFormComponent implements OnInit {
   showModal: boolean = false;
   modalTitle: string = '';
   modalMessage: string = '';
+
+  // staticText
+  staticText = staticTextFR;
 
   ngOnInit(): void {
   }

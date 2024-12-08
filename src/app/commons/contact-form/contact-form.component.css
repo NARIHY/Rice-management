@@ -83,3 +83,7 @@ input:not(:placeholder-shown) + label {
 .submit-button:hover {
   background-color: #0056b3; /* Couleur de fond au survol */
 }
+
+.error-message {
+  color: red;
+}

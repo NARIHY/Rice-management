@@ -7,6 +7,18 @@ export interface StaticText {
   passwordForgotten: string;
   passwordConfirmation: string;
   conection: string;
+  contact: string;
+  name: string;
+  lastName: string;
+  subject: string;
+  message: string;
+  requiredInputName: string;
+  requiredInputLastName: string;
+  requiredInputEmail: string;
+  requiredInputPassword: string;
+  requiredInputPasswordConfirmation: string;
+  requiredInputSubject: string;
+  requiredInputMessage: string;
 }
 
 export const staticTextFR: StaticText = {
@@ -17,7 +29,19 @@ export const staticTextFR: StaticText = {
   register: 'S\'inscrire',
   passwordForgotten: 'Mots de passe oublié',
   passwordConfirmation: 'Confirmer le mots de passe',
-  conection: 'Connexion'
+  conection: 'Connexion',
+  contact: 'Contactez-nous',
+  name: 'Nom: ',
+  lastName: 'Prénom: ',
+  subject: 'Sujet de conversation: ',
+  message: 'Votre message: ',
+  requiredInputName: 'Le nom est requis',
+  requiredInputLastName: 'Le prénon est requis',
+  requiredInputEmail: 'L\'email est requis et doit être valide',
+  requiredInputPassword: ' Le mot de passe est requis (minimum 8 caractères) et doît correspondre à la mots de passe de confirmation.',
+  requiredInputPasswordConfirmation: 'La confirmation du mot de passe est requise et doît être pareil que celle du mots de passe entrer en haut.',
+  requiredInputSubject: 'Le sujet de conversation est requis',
+  requiredInputMessage: 'Le message pour la conversation est requis',
 }
 
 export const staticTextMG: StaticText = {
@@ -28,7 +52,19 @@ export const staticTextMG: StaticText = {
   register: 'Isoratra anarana',
   passwordForgotten: 'Adino ny teny miafina',
   passwordConfirmation: 'Amarino ilay teny miafin',
-  conection: 'Iditra'
+  conection: 'Iditra',
+  contact: '',
+  name: '',
+  lastName: '',
+  subject: '',
+  message: '',
+  requiredInputName: '',
+  requiredInputLastName: '',
+  requiredInputEmail: '',
+  requiredInputPassword: '',
+  requiredInputPasswordConfirmation: '',
+  requiredInputSubject: '',
+  requiredInputMessage: '',
 }
 
 
@@ -40,7 +76,19 @@ export const staticTextUSA: StaticText = {
   register: 'Register',
   passwordForgotten: 'Password forgotten',
   passwordConfirmation: 'Confirm password',
-  conection: 'Login'
+  conection: 'Login',
+  contact: '',
+  name: '',
+  lastName: '',
+  subject: '',
+  message: '',
+  requiredInputName: '',
+  requiredInputLastName: '',
+  requiredInputEmail: '',
+  requiredInputPassword: '',
+  requiredInputPasswordConfirmation: '',
+  requiredInputSubject: '',
+  requiredInputMessage: '',
 }
 
 export interface Locales {

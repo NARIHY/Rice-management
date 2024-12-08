@@ -8,7 +8,7 @@
         <input type="email" id="email" formControlName="email" required placeholder=" ">
         <label for="email">{{staticTextFr.email}}</label>
         <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="error-message">
-          Un email valide est requis.
+          {{staticTextFr.requiredInputEmail}}
         </div>
       </div>
 
@@ -17,7 +17,7 @@
         <input type="password" id="password" formControlName="password" required placeholder=" ">
         <label for="password">{{staticTextFr.password}}</label>
         <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="error-message">
-          Le mot de passe est requis (minimum 8 caractères) et doît correspondre à la mots de passe de confirmation.
+          {{staticTextFr.requiredInputPassword}}
         </div>
       </div>
 
@@ -26,7 +26,7 @@
         <input type="password" id="password_confirmation" formControlName="password_confirmation" required placeholder=" ">
         <label for="password_confirmation">{{ staticTextFr.passwordConfirmation }}</label>
         <div *ngIf="registerForm.get('password_confirmation')?.invalid && registerForm.get('password_confirmation')?.touched" class="error-message">
-          La confirmation du mot de passe est requise et doît être pareil que celle du mots de passe entrer en haut.
+          {{staticTextFr.requiredInputPasswordConfirmation}}
         </div>
       </div>
 
