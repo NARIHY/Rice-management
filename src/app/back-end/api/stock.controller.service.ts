@@ -12,7 +12,7 @@ import { Observable } from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class StockService {
+export class StockControllerService {
 
     protected basePath = 'http://localhost:8000';
     public defaultHeaders = new HttpHeaders();

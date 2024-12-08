@@ -1,14 +1,14 @@
 import { HttpClient, HttpContext, HttpEvent, HttpHeaders, HttpParameterCodec, HttpParams, HttpResponse } from "@angular/common/http";
 import { Inject, Injectable, Optional } from "@angular/core";
+import { Observable } from "rxjs";
 import { BASE_PATH, Configuration } from "src/app/rest";
 import { CustomHttpParameterCodec } from "src/app/rest/encoder";
-import { CinProvenance } from "../models/cinProvenance";
-import { Observable } from "rxjs";
+import { Gender } from "../models/gender";
 
 @Injectable({
   providedIn: 'root'
 })
-export class CinControllerService {
+export class GenderManagementService {
 
     protected basePath = 'http://localhost:8000';
     public defaultHeaders = new HttpHeaders();
@@ -71,16 +71,16 @@ export class CinControllerService {
     }
 
     /**
-     * Retrieves the collection of Cin resources.
-     * Retrieves the collection of Cin resources.
+     * Retrieves the collection of GenderManagement resources.
+     * Retrieves the collection of GenderManagement resources.
      * @param page The collection page number
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getCin(page?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<CinProvenance>>;
-    public getCin(page?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<CinProvenance>>>;
-    public getCin(page?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<CinProvenance>>>;
-    public getCin(page?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public apiGendersGetCollection(page?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<Gender>>;
+    public apiGendersGetCollection(page?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<Gender>>>;
+    public apiGendersGetCollection(page?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<Gender>>>;
+    public apiGendersGetCollection(page?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         if (page !== undefined && page !== null) {
@@ -126,8 +126,8 @@ export class CinControllerService {
             }
         }
 
-        let localVarPath = `/api/cin`;
-        return this.httpClient.request<Array<CinProvenance>>('get', `${this.configuration.basePath}${localVarPath}`,
+        let localVarPath = `/api/genders`;
+        return this.httpClient.request<Array<Gender>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,
